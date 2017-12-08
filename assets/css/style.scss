@@ -5,8 +5,8 @@
 
 span.latest, span.coming {
   font-size: .5em;
-  border: thin solid #ccc;
-  color: #ccc;
+  border: thin solid #999;
+  color: #999;
   background: #eee;
   padding: .3em .5em;
   margin: 0;
@@ -15,12 +15,12 @@ span.latest, span.coming {
 }
 
 span.latest { 
-  border-color: #6cc;
-  color: #6cc;
-  background: #cee;
+  border-color: #141;
+  color: #141;
+  background: #aea;
 } 
 span.coming { 
-  border-color: #c6a;
-  color: #c6a;
-  background: #ecd;
+  border-color: #643;
+  color: #643;
+  background: #dcb;
 } 
