@@ -12,9 +12,9 @@ The "latest" version of an API is
 
 | Version | Description | Example |
 |---------|-------------|---------|
-| <span class="latest">latest</span>  | The latest version of the API. The fields and availability of this API can change without notice. | `/api/currencies` |
-| <span class="v1">v1</span>  | Stable as at TODO (not released yet) | `/api/v1/currencies` |
-| <span class="v2">v2</span>  | Stable as at TODO (not released yet) | `/api/v2/currencies` |
+| latest  | The latest version of the API. The fields and availability of this API can change without notice. | `/api/currencies` |
+| v1  | Stable as at TODO (not released yet) | `/api/v1/currencies` |
+| v2  | Stable as at TODO (not released yet) | `/api/v2/currencies` |
 
 # Public endpoints
 
@@ -109,13 +109,30 @@ GET /api/portfolios/1
     "converted_balances_last_updated": "2017-11-23T23:01:44.000Z",
     "converted_histories_last_updated": "2017-11-23T23:01:44.000Z",
 
-    "currencies": 6,
-    "accounts": 12,
-    "addresses": 14,
-    "offsets": 15
+    "currencies": [...],
+    "accounts": [...],
+    "addresses": [...],
+    "offsets": [...]
   }
 }
 ```
+
+### GET /api/portfolios/_id_/balances <span class="coming">coming soon</span>
+
+Get the current balances for a portfolio.
+
+
+### GET /api/portfolios/_id_/balances/history <span class="coming">coming soon</span>
+
+Get the historical balances for a portfolio.
+
+### GET /api/portfolios/_id_/converted <span class="coming">coming soon</span>
+
+Get the converted balances for a portfolio.
+
+### GET /api/portfolios/_id_/converted/history <span class="coming">coming soon</span>
+
+Get the historical converted balances for a portfolio.
 
 ### GET /api/portfolios/_id_/currencies <span class="coming">coming soon</span>
 
@@ -176,13 +193,38 @@ GET /api/portfolios/1/addresses
       "created_at": "2017-11-06T04:54:54.000Z",
       "updated_at": "2017-11-23T23:01:44.000Z",
       "last_updated": "2017-11-23T23:01:44.000Z",
-      "txns_last_updated": "2017-11-23T23:01:44.000Z"
+      "txns_last_updated": "2017-11-23T23:01:44.000Z",
+
+      "balances_ready": true,
+      "next_update": "2017-11-24T23:01:44.000Z",
+
+      "balances": [{
+        "currency": "btc",
+        "balance": "10.3456",
+        "balance_at": "2017-11-06T04:54:54.000Z",
+        "sent": "12.3456",
+        "received": "2.0",
+        "tranasctions": 16,
+        "source": "blockchain.info"
+      }]
     }, {
       ...
     }]
   }
 }
 ```
+
+### GET /api/portfolios/_id_/addresses/_id_/balances <span class="coming">coming soon</span>
+
+Get the balances for a particular address.
+
+### GET /api/portfolios/_id_/addresses/_id_/txns <span class="coming">coming soon</span>
+
+Get the transactions for a particular address.
+
+### GET /api/portfolios/_id_/addresses/_id_/history <span class="coming">coming soon</span>
+
+Get the daily history for a particular address.
 
 ### POST /api/portfolio/addresses <span class="coming">coming soon</span>
 
@@ -226,26 +268,27 @@ GET /api/portfolios/1/accounts
   }
 }
 ```
+### GET /api/portfolios/_id_/accounts/_id_/balances <span class="coming">coming soon</span>
+
+### GET /api/portfolios/_id_/accounts/_id_/txns <span class="coming">coming soon</span>
+
+### GET /api/portfolios/_id_/accounts/_id_/history <span class="coming">coming soon</span>
 
 ### POST /api/portfolio/accounts <span class="coming">coming soon</span>
 
-Create a new portfolio account.
-
 ### DELETE /api/portfolio/accounts <span class="coming">coming soon</span>
-
-Delete a portfolio account.
 
 ### GET /api/portfolios/_id_/offsets <span class="coming">coming soon</span>
 
-List the offsets on a portfolio.
+### GET /api/portfolios/_id_/offsets/_id_/balances <span class="coming">coming soon</span>
+
+### GET /api/portfolios/_id_/offsets/_id_/txns <span class="coming">coming soon</span>
+
+### GET /api/portfolios/_id_/offsets/_id_/history <span class="coming">coming soon</span>
 
 ### POST /api/portfolio/offsets <span class="coming">coming soon</span>
 
-Create a new portfolio offset.
-
 ### DELETE /api/portfolio/offsets <span class="coming">coming soon</span>
-
-Delete a portfolio offset.
 
 # TODO
 
