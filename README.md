@@ -1,4 +1,4 @@
-This page is a list of all of the endpoints available at https://preview.cryptfolio.com.
+**_Please,_ feel free to make any contributions you feel will make this documentation better.** You can submit pull requests to the [GitHub repository](https://github.com/cryptfolio1/api/).
 
 # Request format
 
@@ -8,9 +8,21 @@ Do not request a public endpoint more than once per five seconds or you will be 
 
 TODO
 
+# API Versioning
+
+At some point in the future, we will push out a stable v1 of the API which you can use to build your applications.
+
+The "latest" version of an API is 
+
+| Version | Description | Example |
+|---------|-------------|---------|
+| latest  | The latest version of the API. The fields and availability of this API can change without notice. | `/api/currencies` |
+| v1  | Stable as at TODO (not released yet) | `/api/v1/currencies` |
+| v2  | Stable as at TODO (not released yet) | `/api/v2/currencies` |
+
 # Public endpoints
 
-## GET /api/currencies
+## {:.latest} GET /api/currencies
 
 Lists all known currencies.
 
@@ -42,15 +54,15 @@ GET /api/currencies
 }
 ```
 
-## GET /api/currencies/crypto
+## {:.coming} GET /api/currencies/crypto
 
 Lists all known cryptocurrencies.
 
-## GET /api/currencies/fiat
+## {:.coming} /api/currencies/fiat
 
 Lists all known fiat currencies.
 
-## GET /api/currencies/tokens
+## {:.coming} /api/currencies/tokens
 
 Lists all known Ethereum tokens.
 
