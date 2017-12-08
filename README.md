@@ -18,7 +18,7 @@ Lists all known currencies.
 GET /api/currencies
 ```
 
-```json
+```js
 {
   success: true,
   time: 1512697998,
