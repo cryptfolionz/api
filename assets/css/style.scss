@@ -1,0 +1,17 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+span.latest, span.coming {
+  font-size: 90%;
+  padding:
+  border: thin solid #ccc;
+  background: #eee;
+  padding: .2em .4em;
+  margin: 0;
+  margin-left: 1em;
+}
+
+span.latest { } 
+span.coming { } 
