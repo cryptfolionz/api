@@ -3,12 +3,8 @@ require 'spec_helper'
 describe "/currencies" do
   include FetchSupport
 
-  it "is true" do
-    expect(true).to eq true
-  end
-
   it "returns a list of currencies" do
-    json = fetch_json("http://localhost:3000/api/currencies")
+    json = fetch_json("#{ENV["HOST"]}/api/currencies")
 
     expect(json["success"]).to eq true
     expect(json["time"]).to be > 0

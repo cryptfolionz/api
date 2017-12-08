@@ -12,3 +12,4 @@ gem 'rest-client'
 gem 'ratelimit'
 
 gem "byebug"
+gem "dotenv"

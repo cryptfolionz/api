@@ -8,7 +8,7 @@ Do not request a public endpoint more than once per five seconds or you will be 
 
 At some point in the future, we will push out a stable v1 of the API which you can use to build your applications.
 
-The "latest" version of an API is 
+The "latest" version of an API is
 
 | Version | Description | Example |
 |---------|-------------|---------|
@@ -80,7 +80,7 @@ Update the attributes of a portfolio.
 
 ## DELETE /api/portfolio/_id_ <span class="coming">coming soon</span>
 
-Delete a portfolio. 
+Delete a portfolio.
 
 # TODO
 
@@ -88,3 +88,5 @@ Delete a portfolio.
 1. We could have a travis-ci badge...
 1. In theory we could include some sample applications here too
 1. User accounts/APIs will have different rate limits depending on plan
+1. Could we generate the .md from the specs?
+1. The specs could use a specific Ruby client, rather than manually GET (which could be included in cryptfolio CI)
