@@ -54,6 +54,29 @@ GET /api/currencies
 
 Get the information about a currency.
 
+```
+GET /api/currencies/btc
+```
+
+```json
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 1,
+    "title": "Bitcoin",
+    "code": "btc",
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+    "is_cryptocurrency": true,
+    "is_fiat": false,
+    "is_ethereum_token": false,
+    "ethereum_contract_address": null,
+    "source": null
+  }
+}
+```
+
 ### GET /api/currencies/crypto <span class="coming">coming soon</span>
 
 Lists all known cryptocurrencies.
@@ -238,7 +261,6 @@ Delete a portfolio address.
 
 List the accounts on a portfolio.
 
-
 ```
 GET /api/portfolios/1/accounts
 ```
@@ -289,6 +311,22 @@ GET /api/portfolios/1/accounts
 ### POST /api/portfolio/offsets <span class="coming">coming soon</span>
 
 ### DELETE /api/portfolio/offsets <span class="coming">coming soon</span>
+
+### GET /api/users <span class="coming">coming soon</span>
+
+List all of your user accounts.
+
+### POST /api/users/create <span class="coming">coming soon</span>
+
+Create a new user account.
+
+### PATCH /api/users/_id_ <span class="coming">coming soon</span>
+
+Update the attributes of a user account.
+
+### DELETE /api/users/_id_ <span class="coming">coming soon</span>
+
+Delete a user account.
 
 # TODO
 
