@@ -22,7 +22,7 @@ The "latest" version of an API is
 
 # Public endpoints
 
-## {:.latest} GET /api/currencies
+## GET /api/currencies <span class="latest">latest</span>
 
 Lists all known currencies.
 
@@ -54,15 +54,15 @@ GET /api/currencies
 }
 ```
 
-## {:.coming} GET /api/currencies/crypto
+## GET /api/currencies/crypto <span class="coming">coming soon</span>
 
 Lists all known cryptocurrencies.
 
-## {:.coming} /api/currencies/fiat
+## GET /api/currencies/fiat <span class="coming">coming soon</span>
 
 Lists all known fiat currencies.
 
-## {:.coming} /api/currencies/tokens
+## GET /api/currencies/tokens <span class="coming">coming soon</span>
 
 Lists all known Ethereum tokens.
 
