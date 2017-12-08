@@ -1,37 +1,65 @@
-## Welcome to GitHub Pages!
+This page is a list of all of the endpoints available at https://preview.cryptfolio.com.
 
-You can use the [editor on GitHub](https://github.com/cryptfolio1/api/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+# Request format
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Do not request a public endpoint more than once per five seconds or you will be automatically blocked.
 
-### Markdown
+# Authentication
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+TODO
 
-```markdown
-Syntax highlighted code block
+# Public endpoints
 
-# Header 1
-## Header 2
-### Header 3
+## GET /api/currencies
 
-- Bulleted
-- List
+Lists all known currencies.
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+GET /api/currencies
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+```json
+{
+  success: true,
+  time: 1512697998,
+  result: {
+    count: 646,
+    currencies: [{
+      id: 1,
+      title: "Bitcoin",
+      code: "btc",
+      created_at: "2017-11-06T04:54:54.000Z",
+      updated_at: "2017-11-23T23:01:44.000Z",
+      is_cryptocurrency: true,
+      is_fiat: false,
+      is_ethereum_token: false,
+      ethereum_contract_address: null,
+      source: null,
+    }, {
+      ...
+    }]
+  }
+```
 
-### Jekyll Themes
+## GET /api/currencies/crypto
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/cryptfolio1/api/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Lists all known cryptocurrencies.
 
-### Support or Contact
+## GET /api/currencies/fiat
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Lists all known fiat currencies.
+
+## GET /api/currencies/tokens
+
+Lists all known Ethereum tokens.
+
+# Private endpoints
+
+TODO
+
+# TODO
+
+1. Could we add some specs that automatically check all of the endpoints described?
+1. We could have a travis-ci badge...
+1. In theory we could include some sample applications here too
+1. User accounts/APIs will have different rate limits depending on plan
