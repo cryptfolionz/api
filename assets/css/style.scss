@@ -13,5 +13,11 @@ span.latest, span.coming {
   margin-left: 1em;
 }
 
-span.latest { } 
-span.coming { } 
+span.latest { 
+  border-color: #c6a;
+  background: #ecd;
+} 
+span.coming { 
+  border-color: #6cc;
+  background: #cee;
+} 
