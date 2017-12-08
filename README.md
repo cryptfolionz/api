@@ -34,11 +34,12 @@ GET /api/currencies
       is_fiat: false,
       is_ethereum_token: false,
       ethereum_contract_address: null,
-      source: null,
+      source: null
     }, {
       ...
     }]
   }
+}
 ```
 
 ## GET /api/currencies/crypto
