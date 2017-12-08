@@ -1,10 +1,10 @@
 **_Please,_ feel free to make any contributions you feel will make this documentation better.** You can submit pull requests to the [GitHub repository](https://github.com/cryptfolio1/api/).
 
-# Request format
+## Request format
 
 Do not request a public endpoint more than once per five seconds or you will be automatically blocked.
 
-# API Versioning
+## API Versioning
 
 At some point in the future, we will push out a stable v1 of the API which you can use to build your applications.
 
@@ -18,7 +18,7 @@ The "latest" version of an API is
 
 # Public endpoints
 
-## GET /api/currencies <span class="latest">latest</span>
+### GET /api/currencies <span class="latest">latest</span>
 
 Lists all known currencies.
 
@@ -50,15 +50,15 @@ GET /api/currencies
 }
 ```
 
-## GET /api/currencies/crypto <span class="coming">coming soon</span>
+### GET /api/currencies/crypto <span class="coming">coming soon</span>
 
 Lists all known cryptocurrencies.
 
-## GET /api/currencies/fiat <span class="coming">coming soon</span>
+### GET /api/currencies/fiat <span class="coming">coming soon</span>
 
 Lists all known fiat currencies.
 
-## GET /api/currencies/tokens <span class="coming">coming soon</span>
+### GET /api/currencies/tokens <span class="coming">coming soon</span>
 
 Lists all known Ethereum tokens.
 
@@ -66,19 +66,19 @@ Lists all known Ethereum tokens.
 
 With all of these endpoints you will need to provide an API key. (Documentation on authentication coming.)
 
-## GET /api/portfolios <span class="coming">coming soon</span>
+### GET /api/portfolios <span class="coming">coming soon</span>
 
 List all of your portfolios.
 
-## POST /api/portfolios/create <span class="coming">coming soon</span>
+### POST /api/portfolios/create <span class="coming">coming soon</span>
 
 Create a new portfolio.
 
-## PATCH /api/portfolios/_id_ <span class="coming">coming soon</span>
+### PATCH /api/portfolios/_id_ <span class="coming">coming soon</span>
 
 Update the attributes of a portfolio.
 
-## DELETE /api/portfolio/_id_ <span class="coming">coming soon</span>
+### DELETE /api/portfolio/_id_ <span class="coming">coming soon</span>
 
 Delete a portfolio.
 
