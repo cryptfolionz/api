@@ -6,7 +6,7 @@ Do not request a public endpoint more than once per five seconds or you will be 
 
 ## API Versioning
 
-At some point in the future, we will push out a stable v1 of the API which you can use to build your applications.
+At some point in the future, we will push out a stable `v1` of this API which you can use to build long-term applications. At any time, you can use the `latest` version to access new features, however the latest API may change at any time.
 
 | Version | Description | Example |
 |---------|-------------|---------|
