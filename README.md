@@ -2,7 +2,7 @@
 
 ## Request format
 
-Do not request a public endpoint more than once per five seconds or you will be automatically blocked.
+Do not request a public endpoint more than once per five seconds or you will be automatically blocked. (Different pricing plans have different limits.)
 
 ## API Versioning
 
@@ -103,7 +103,7 @@ List information, exchange pairs, and current rates from a particular exchange.
 GET /api/exchanges/bitstamp
 ```
 
-### GET /api/exchanges/_key_ <span class="coming">coming soon</span>
+### GET /api/exchanges/_key_/_currency1_/_currency2_ <span class="coming">coming soon</span>
 
 Lists historical rates for a particular currency pair on an exchange.
 
@@ -373,7 +373,7 @@ GET /api/portfolios/1/accounts
       "source": "web",
 
       "is_invalid": false,
-      "latest_error": nil,
+      "latest_error": null,
 
       "created_at": "2017-11-06T04:54:54.000Z",
       "updated_at": "2017-11-23T23:01:44.000Z",
