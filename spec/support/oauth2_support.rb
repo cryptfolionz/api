@@ -5,6 +5,9 @@ module Oauth2Support
     let(:oauth2_key) { ENV['OAUTH2_KEY'] || fail("Need OAUTH2_KEY env variable set") }
     let(:oauth2_secret) { ENV['OAUTH2_SECRET'] || fail("Need OAUTH2_SECRET env variable set") }
 
+    let(:user_email) { ENV['TEST_USER_EMAIL'] || fail("Need TEST_USER_EMAIL env verified set") }
+    let(:user_password) { ENV['TEST_USER_PASSWORD'] || fail("Need TEST_USER_PASSWORD env verified set") }
+
     # Normally, this will be the endpoint of your application
     let(:redirect_uri) { ENV['OAUTH2_REDIRECT_URI'] || fail("Need OAUTH2_REDIRECT_URI env variable set") }
 
@@ -34,7 +37,7 @@ module Oauth2Support
       # NOTE this will only work for CryptFolio users where allow_remote_login=true,
       # and only Enterprise users can request this to be enabled. You should be using
       # the normal OAuth2 flow instead.
-      oauth2_client.password.get_token(ENV['TEST_USER_EMAIL'], ENV['TEST_USER_PASSWORD'], scope: scopes.split(" "))
+      oauth2_client.password.get_token(user_email, user_password, scope: scopes)
     end
 
     shared_examples "a successful request" do
@@ -44,8 +47,8 @@ module Oauth2Support
 
       it "is a succesful request" do
         expect(json["success"]).to eq true
-        expect(json["timestamp"]).to be >= (Time.now - 1.hour).to_i
-        expect(json["timestamp"]).to be <= (Time.now + 1.hour).to_i
+        expect(json["time"]).to be >= (Time.now - 1.hour).to_i
+        expect(json["time"]).to be <= (Time.now + 1.hour).to_i
         expect(json["result"]).to_not be_nil
       end
     end
@@ -57,8 +60,8 @@ module Oauth2Support
 
       it "is a failed request" do
         expect(json["success"]).to eq false
-        expect(json["timestamp"]).to be >= (Time.now - 1.hour).to_i
-        expect(json["timestamp"]).to be <= (Time.now + 1.hour).to_i
+        expect(json["time"]).to be >= (Time.now - 1.hour).to_i
+        expect(json["time"]).to be <= (Time.now + 1.hour).to_i
         expect(json["message"]).to eq message
         expect(json["result"]).to be_nil
       end
