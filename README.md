@@ -1,4 +1,4 @@
-**_Please,_ feel free to make any contributions you feel will make this documentation better.** You can submit pull requests to the [GitHub repository](https://github.com/cryptfolio1/api/), and they will be published to [the API documentation](https://cryptfolio1.github.io/api/).
+**_Please,_ feel free to make any contributions you feel will make this documentation better.** You can submit pull requests to the [GitHub repository](https://github.com/cryptfolio1/api/), and they will be published to [the API documentation](https://cryptfolionz.github.io/api/).
 
 [Example Code](examples)
 
