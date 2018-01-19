@@ -7,16 +7,10 @@ describe "/user" do
   let(:endpoint) { "/api/user" }
 
   context "without the OAuth2 application getting access to the user account" do
-    it "returns a 400" do
+    it "returns a 401" do
       expect {
         fetch_json("#{ENV["HOST"]}#{endpoint}")
-      }.to raise_error(RestClient::BadRequest) do |e|
-        json = JSON::parse(e.response.body)
-
-        expect(json["success"]).to eq false
-        expect(json["time"]).to be >= (Time.now - 1.hour).to_i
-        expect(json["message"]).to eq "Requires login with OAuth2"
-      end
+      }.to raise_error(RestClient::Unauthorized)
     end
   end
 
@@ -47,14 +41,11 @@ describe "/user" do
         end
       end
 
-      # context "with a user without allow_remote_login?" do
-      #   let(:user_email) { "..." }
-      #   let(:user_password) { "..." }
+      context "with a scope that doesn't provide enough access" do
+        let(:scopes) { "public" }
 
-      #   it_behaves_like "a failed OAuth2 request" do
-      #     let(:error_code) { "invalid_grant" }
-      #   end
-      # end
+        it_behaves_like "a forbidden OAuth2 request"
+      end
     end
   end
 

@@ -73,6 +73,18 @@ module Oauth2Support
           oauth2_token.get(endpoint)
         }.to raise_error(OAuth2::Error) do |e|
           expect(e.code).to eq error_code
+          expect(e.response.status).to eq 401
+        end
+      end
+    end
+
+    shared_examples "a forbidden OAuth2 request" do
+      it "raises an error" do
+        expect {
+          oauth2_token.get(endpoint)
+        }.to raise_error(OAuth2::Error) do |e|
+          expect(e.code).to eq nil
+          expect(e.response.status).to eq 403
         end
       end
     end
