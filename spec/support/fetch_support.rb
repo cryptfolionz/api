@@ -41,6 +41,6 @@ module FetchSupport
       new_b[k.to_s] = v
     end
 
-    expect(a.select { |k, v| new_b.keys.include?(k) }).to eq(new_b)
+    expect(a.select { |k, v| new_b.keys.include?(k) }.sort).to eq(new_b.sort)
   end
 end

@@ -17,3 +17,6 @@ gem 'rest-client'
 gem 'ratelimit'
 
 gem "oauth2"
+
+# For encrypting travis-ci secrets
+gem "travis"

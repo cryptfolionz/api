@@ -26,17 +26,17 @@ describe "/currencies" do
         "source",
       ].sort
 
+    bitcoin = json["result"]["currencies"].select { |currency| currency["code"] == "btc" }.first
+
     expected = {
-      "id":    1,
-      "code":  "btc",
-      "title": "Bitcoin",
+      "code":              "btc",
+      "title":             "Bitcoin",
       "is_cryptocurrency": true,
-      "is_fiat": false,
+      "is_fiat":           false,
       "is_ethereum_token": false,
       "ethereum_contract_address": nil,
-      "source": nil,
     }
 
-    expect_hash_match(currency, expected)
+    expect_hash_match(bitcoin, expected)
   end
 end
