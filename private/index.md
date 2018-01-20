@@ -11,6 +11,26 @@ With all of these endpoints you will need to get permission from the user to acc
 
 See [some example OAuth2 authentication code](../examples/).
 
+### GET /api/user <span class="latest">latest</span>
+
+Retrieve key information about this user.
+
+```
+GET /api/user
+```
+
+```json
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "name": "Test user",
+    "email": "test@openclerk.org",
+    "created_at": "2017-11-06T04:54:54.000Z"
+  }
+}
+```
+
 ### GET /api/portfolios <span class="coming">coming soon</span>
 
 List all of your portfolios.

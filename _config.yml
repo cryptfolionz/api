@@ -1,3 +1,4 @@
 theme: jekyll-theme-cayman
 title: CryptFolio API
-description: Documentation for https://preview.cryptfolio.com/api
+description: Documentation for the CryptFolio API
+google_analytics: UA-40490286-12
