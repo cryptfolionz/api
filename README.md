@@ -2,9 +2,9 @@
 
 **_Please,_ feel free to make any contributions you feel will make this documentation better.** You can submit pull requests to the [GitHub repository](https://github.com/cryptfolionz/api/), and they will be published to [the API documentation](https://cryptfolionz.github.io/api/).
 
-* [Example Code](examples/)
 * [Public API Reference](public/)
-* [User API Reference](private/)
+* [Private API Reference](private/)
+* [Example Code](examples/)
 
 ## Request format
 

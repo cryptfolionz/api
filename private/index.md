@@ -31,7 +31,7 @@ GET /api/user
 }
 ```
 
-### GET /api/portfolios <span class="coming">coming soon</span>
+### GET /api/portfolios <span class="latest">latest</span>
 
 List all of your portfolios.
 
@@ -39,15 +39,15 @@ List all of your portfolios.
 
 Create a new portfolio.
 
-### PATCH /api/portfolios/_id_ <span class="coming">coming soon</span>
+### PATCH /api/portfolios/ID <span class="coming">coming soon</span>
 
 Update the attributes of a portfolio.
 
-### DELETE /api/portfolios/_id_ <span class="coming">coming soon</span>
+### DELETE /api/portfolios/ID <span class="coming">coming soon</span>
 
 Delete a portfolio.
 
-### GET /api/portfolios/_id_ <span class="coming">coming soon</span>
+### GET /api/portfolios/ID <span class="latest">latest</span>
 
 List the properties and accounts of a portfolio.
 
@@ -78,7 +78,7 @@ GET /api/portfolios/1
 }
 ```
 
-### GET /api/portfolios/_id_/balances <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/balances <span class="coming">coming soon</span>
 
 Get all current balances for a portfolio (the current balances of all account and addresses, summed together).
 
@@ -108,13 +108,13 @@ GET /api/portfolios/1/balances
 }
 ```
 
-### GET /api/portfolios/_id_/balances/_currency_ <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/balances/_currency_ <span class="coming">coming soon</span>
 
-### GET /api/portfolios/_id_/balances/history <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/balances/history <span class="coming">coming soon</span>
 
 Get the historical balances for a portfolio.
 
-### GET /api/portfolios/_id_/balances/_currency_/history <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/balances/_currency_/history <span class="coming">coming soon</span>
 
 Get the historical balances for a portfolio for a particular currency.
 
@@ -144,15 +144,15 @@ GET /api/portfolios/1/balances/btc/history
 }
 ```
 
-### GET /api/portfolios/_id_/converted <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/converted <span class="coming">coming soon</span>
 
 Get the converted balances for a portfolio.
 
-### GET /api/portfolios/_id_/converted/history <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/converted/history <span class="coming">coming soon</span>
 
 Get the historical converted balances for a portfolio.
 
-### GET /api/portfolios/_id_/currencies <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/currencies <span class="coming">coming soon</span>
 
 List the currencies on a portfolio.
 
@@ -185,7 +185,7 @@ Create a new portfolio currency.
 
 Delete a portfolio currency.
 
-### GET /api/portfolios/_id_/addresses <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/addresses <span class="coming">coming soon</span>
 
 List the addresses on a portfolio. This will list the public address hashes for each address.
 
@@ -232,27 +232,27 @@ GET /api/portfolios/1/addresses
 }
 ```
 
-### GET /api/portfolios/_id_/addresses/_id_/balances <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/addresses/ID/balances <span class="coming">coming soon</span>
 
 Get the balances for a particular address.
 
-### GET /api/portfolios/_id_/addresses/_id_/txns <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/addresses/ID/txns <span class="coming">coming soon</span>
 
 Get the transactions for a particular address.
 
-### GET /api/portfolios/_id_/addresses/_id_/history <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/addresses/ID/history <span class="coming">coming soon</span>
 
 Get the daily history for a particular address.
 
-### POST /api/portfolios/_id_/addresses <span class="coming">coming soon</span>
+### POST /api/portfolios/ID/addresses <span class="coming">coming soon</span>
 
 Create a new portfolio address.
 
-### DELETE /api/portfolios/_id_/addresses <span class="coming">coming soon</span>
+### DELETE /api/portfolios/ID/addresses <span class="coming">coming soon</span>
 
 Delete a portfolio address.
 
-### GET /api/portfolios/_id_/accounts <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/accounts <span class="coming">coming soon</span>
 
 List the accounts on a portfolio. This list will not reveal keys or secrets.
 
@@ -285,27 +285,27 @@ GET /api/portfolios/1/accounts
   }
 }
 ```
-### GET /api/portfolios/_id_/accounts/_id_/balances <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/accounts/ID/balances <span class="coming">coming soon</span>
 
-### GET /api/portfolios/_id_/accounts/_id_/txns <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/accounts/ID/txns <span class="coming">coming soon</span>
 
-### GET /api/portfolios/_id_/accounts/_id_/history <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/accounts/ID/history <span class="coming">coming soon</span>
 
-### POST /api/portfolios/_id_/accounts <span class="coming">coming soon</span>
+### POST /api/portfolios/ID/accounts <span class="coming">coming soon</span>
 
-### DELETE /api/portfolios/_id_/accounts <span class="coming">coming soon</span>
+### DELETE /api/portfolios/ID/accounts <span class="coming">coming soon</span>
 
-### GET /api/portfolios/_id_/offsets <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/offsets <span class="coming">coming soon</span>
 
-### GET /api/portfolios/_id_/offsets/_id_/balances <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/offsets/ID/balances <span class="coming">coming soon</span>
 
-### GET /api/portfolios/_id_/offsets/_id_/txns <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/offsets/ID/txns <span class="coming">coming soon</span>
 
-### GET /api/portfolios/_id_/offsets/_id_/history <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/offsets/ID/history <span class="coming">coming soon</span>
 
-### POST /api/portfolios/_id_/offsets <span class="coming">coming soon</span>
+### POST /api/portfolios/ID/offsets <span class="coming">coming soon</span>
 
-### DELETE /api/portfolios/_id_/offsets <span class="coming">coming soon</span>
+### DELETE /api/portfolios/ID/offsets <span class="coming">coming soon</span>
 
 # Enterprise endpoints
 
@@ -320,11 +320,11 @@ List all of your user accounts.
 
 Create a new user account.
 
-### PATCH /api/users/_id_ <span class="coming">coming soon</span>
+### PATCH /api/users/ID <span class="coming">coming soon</span>
 
 Update the attributes of a user account.
 
-### DELETE /api/users/_id_ <span class="coming">coming soon</span>
+### DELETE /api/users/ID <span class="coming">coming soon</span>
 
 Delete a user account.
 

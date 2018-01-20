@@ -36,7 +36,7 @@ GET /api/currencies
 }
 ```
 
-### GET /api/currencies/_code_ <span class="coming">coming soon</span>
+### GET /api/currencies/CODE <span class="coming">coming soon</span>
 
 Get the information about a currency.
 
@@ -63,7 +63,7 @@ GET /api/currencies/btc
 }
 ```
 
-### GET /api/currencies/_code_/exchanges <span class="coming">coming soon</span>
+### GET /api/currencies/CODE/exchanges <span class="coming">coming soon</span>
 
 List all exchanges that trade that currency.
 
@@ -83,7 +83,7 @@ Lists all known Ethereum tokens.
 
 Lists all known exchanges.
 
-### GET /api/exchanges/_key_ <span class="coming">coming soon</span>
+### GET /api/exchanges/KEY <span class="coming">coming soon</span>
 
 List information, exchange pairs, and current rates from a particular exchange.
 
@@ -91,7 +91,7 @@ List information, exchange pairs, and current rates from a particular exchange.
 GET /api/exchanges/bitstamp
 ```
 
-### GET /api/exchanges/_key_/_currency1_/_currency2_ <span class="coming">coming soon</span>
+### GET /api/exchanges/KEY/CURRENCY1/CURRENCY2 <span class="coming">coming soon</span>
 
 Lists historical rates for a particular currency pair on an exchange.
 
