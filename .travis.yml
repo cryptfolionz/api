@@ -1,10 +1,13 @@
 language: ruby
 rvm:
-- 2.3
+  - 2.3
+before_install:
+  - gem update --system
+  - gem install bundler
 script:
-- bundle exec rspec
+  - bundle exec rspec
 services:
-- redis-server
+  - redis-server
 env:
   global:
     - HOST=https://preview.cryptfolio.com
