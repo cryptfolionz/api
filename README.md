@@ -1,6 +1,6 @@
 # CryptFolio API [![Build Status](https://travis-ci.org/cryptfolionz/api.svg?branch=master)](https://travis-ci.org/cryptfolionz/api)
 
-**_Please,_ feel free to make any contributions you feel will make this documentation better.** You can submit pull requests to the [GitHub repository](https://github.com/cryptfolio1/api/), and they will be published to [the API documentation](https://cryptfolionz.github.io/api/).
+**_Please,_ feel free to make any contributions you feel will make this documentation better.** You can submit pull requests to the [GitHub repository](https://github.com/cryptfolionz/api/), and they will be published to [the API documentation](https://cryptfolionz.github.io/api/).
 
 * [Example Code](examples/)
 * [Public API Reference](public/)
@@ -8,11 +8,11 @@
 
 ## Request format
 
-Do not request a public endpoint more than once per five seconds or you will be automatically blocked. (Different pricing plans have different limits.)
+Do not request an endpoint more than once per five seconds or you may be automatically blocked. (Different pricing plans have different limits.)
 
-## API Versioning
+## API versioning
 
-At some point in the future, we will push out a stable `v1` of this API which you can use to build long-term applications. At any time, you can use the `latest` version to access new features, however the latest API may change at any time.
+At some point in the future, we will push out a stable `v1` of this API which you can use to build long-term applications. At any time, you can use the `latest` version to access new features, however this API may change at any time.
 
 | Version | Description | Example |
 |---------|-------------|---------|
@@ -20,7 +20,7 @@ At some point in the future, we will push out a stable `v1` of this API which yo
 | v1  | Stable as at TODO (not released yet) | `/api/v1/currencies` |
 | v2  | Stable as at TODO (not released yet) | `/api/v2/currencies` |
 
-## Loading
+## Asynchronous endpoints
 
 Some of these endpoints are asynchronous - for example, endpoints where a
 balance or value has to be downloaded or generated. In this case, your
@@ -41,7 +41,7 @@ GET /api/portfolios/1/balances
 }
 ```
 
-In this response, `try_again_at` gives a time that you can reasonably expect the result should be available, so that you don't have to continually poll the endpoint until the result is loaded.
+In this response, `try_again_at` gives a time that you can reasonably expect the result should be available, so that you don't have to continually poll the endpoint until the result is ready.
 
 # TODO
 
