@@ -4,9 +4,9 @@
 
 All of these endpoints can be requested directly or through OAuth2. (In the future, authentication through OAuth2 will give you higher request limits.)
 
-### GET /api/currencies <span class="latest">latest</span>
+### GET [/api/currencies](https://preview.cryptfolio.com/api/currencies) <span class="latest">latest</span>
 
-Lists all known currencies. ([Example](https://preview.cryptfolio.com/api/currencies))
+Lists all known currencies.
 
 ```
 GET /api/currencies
