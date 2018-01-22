@@ -11,6 +11,8 @@ With all of these endpoints you will need to get permission from the user to acc
 
 See [some example OAuth2 authentication code](../examples/).
 
+# User information
+
 ### GET /api/user <span class="latest">latest</span>
 
 Retrieve key information about this user.
@@ -30,6 +32,8 @@ GET /api/user
   }
 }
 ```
+
+# Portfolios
 
 ### GET /api/portfolios <span class="latest">latest</span>
 
@@ -279,38 +283,7 @@ Get the converted balances for a portfolio.
 
 Get the historical converted balances for a portfolio.
 
-### GET /api/portfolios/ID/currencies <span class="coming">coming soon</span>
-
-List the currencies on a portfolio.
-
-```
-GET /api/portfolios/1/currencies
-```
-
-```ruby
-{
-  "success": true,
-  "time": 1512697998,
-  "result": {
-    "currencies": [{
-      "id": 1,
-      "title": "Bitcoin",
-      "code": "btc",
-      ... as per /currency/id format
-    }, {
-      ...
-    }]
-  }
-}
-```
-
-### POST /api/portfolio/currencies <span class="coming">coming soon</span>
-
-Create a new portfolio currency.
-
-### DELETE /api/portfolio/currencies <span class="coming">coming soon</span>
-
-Delete a portfolio currency.
+# Addresses
 
 ### GET /api/portfolios/ID/addresses <span class="coming">coming soon</span>
 
@@ -379,6 +352,8 @@ Create a new portfolio address.
 
 Delete a portfolio address.
 
+# Accounts
+
 ### GET /api/portfolios/ID/accounts <span class="coming">coming soon</span>
 
 List the accounts on a portfolio. This list will not reveal keys or secrets.
@@ -422,6 +397,8 @@ GET /api/portfolios/1/accounts
 
 ### DELETE /api/portfolios/ID/accounts <span class="coming">coming soon</span>
 
+# Offsets
+
 ### GET /api/portfolios/ID/offsets <span class="coming">coming soon</span>
 
 ### GET /api/portfolios/ID/offsets/ID/balances <span class="coming">coming soon</span>
@@ -433,27 +410,6 @@ GET /api/portfolios/1/accounts
 ### POST /api/portfolios/ID/offsets <span class="coming">coming soon</span>
 
 ### DELETE /api/portfolios/ID/offsets <span class="coming">coming soon</span>
-
-# Enterprise endpoints
-
-For [our enterprise customers](https://preview.cryptfolio.com/pricing),
-you are also able to access these endpoints to create, update and delete accounts for your users:
-
-### GET /api/users <span class="coming">coming soon</span>
-
-List all of your user accounts.
-
-### POST /api/users/create <span class="coming">coming soon</span>
-
-Create a new user account.
-
-### PATCH /api/users/ID <span class="coming">coming soon</span>
-
-Update the attributes of a user account.
-
-### DELETE /api/users/ID <span class="coming">coming soon</span>
-
-Delete a user account.
 
 # Example flow: Getting the history of an address
 

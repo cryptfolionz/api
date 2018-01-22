@@ -4,6 +4,7 @@
 
 * [Public API Reference](public/)
 * [Private API Reference](private/)
+* [Enterprise API Reference](enterprise/)
 * [Example Code](examples/)
 
 ## Request format
