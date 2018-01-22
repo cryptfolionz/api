@@ -25,7 +25,7 @@ At some point in the future, we will push out a stable `v1` of this API which yo
 
 Some of these endpoints are asynchronous - for example, endpoints where a
 balance or value has to be downloaded or generated. In this case, your
-request will receive an error status of "loading", and you should try again later.
+request will receive an error status of "Not ready", and you should try again later.
 
 For example:
 
@@ -54,9 +54,6 @@ Make sure that you implement an exponential backoff between successive requests
 
 # TODO
 
-1. Could we add some specs that automatically check all of the endpoints described?
-1. We could have a travis-ci badge...
 1. In theory we could include some sample applications here too
 1. User accounts/APIs will have different rate limits depending on plan
 1. Could we generate the .md from the specs?
-1. The specs could use a specific Ruby client, rather than manually GET (which could be included in cryptfolio CI)

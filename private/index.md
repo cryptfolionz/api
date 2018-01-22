@@ -26,7 +26,7 @@ If the user has not provided your application with sufficient scope your request
 
 ### GET /api/user <span class="latest">latest</span>
 
-Retrieve key information about this user.
+Retrieve key information about this user. Requires one of the `admin`, `read` or `info` scopes.
 
 ```
 GET /api/user
