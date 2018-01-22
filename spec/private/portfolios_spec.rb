@@ -84,6 +84,58 @@ describe "/portfolios" do
       end
     end
 
+    context "on an existing portfolio" do
+      it_behaves_like "with a portfolio" do
+        context "with an address" do
+          it_behaves_like "with a bitcoin address" do
+            context "then requesting all balances" do
+              let(:endpoint) { "/api/portfolios/#{portfolio["id"]}/balances" }
+
+              it_behaves_like "a successful request" do
+                let(:wait_for_response) { true }
+
+                it "returns a list of total balances" do
+                  expect(result.length).to eq 2
+
+                  expect(result.first["currency"]["code"]).to eq "btc"
+                  expect(result.first["balance"]).to eq "50.00501"
+                  expect(result.first["balance_at"]).to_not eq nil
+                  expect(result.first["source"]).to_not eq nil
+
+                  expect(result.second["currency"]["code"]).to eq "usd"
+                  expect(result.second["balance"]).to eq "0.0"
+                  expect(result.second["balance_at"]).to_not eq nil
+                  expect(result.second["source"]).to_not eq nil
+                end
+              end
+            end
+
+            context "then requesting all converted balances" do
+              let(:endpoint) { "/api/portfolios/#{portfolio["id"]}/converted" }
+
+              it_behaves_like "a successful request" do
+                let(:wait_for_response) { true }
+
+                it "returns a list of total balances" do
+                  expect(result.length).to eq 2
+
+                  expect(result.first["currency"]["code"]).to eq "btc"
+                  expect(result.first["balance"]).to eq "50.00501"
+                  expect(result.first["balance_at"]).to_not eq nil
+                  expect(result.first["source"]).to_not eq nil
+
+                  expect(result.second["currency"]["code"]).to eq "usd"
+                  expect(result.second["balance"].to_d).to be >= '1000'.to_d
+                  expect(result.second["balance_at"]).to_not eq nil
+                  expect(result.second["source"]).to_not eq nil
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+
     # This also helps us maintain the remote list of user portfolios
     context "deleting all portfolios" do
       let(:endpoint) { "/api/portfolios" }

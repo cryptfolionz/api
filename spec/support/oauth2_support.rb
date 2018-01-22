@@ -55,8 +55,38 @@ module Oauth2Support
       oauth2_client.password.get_token(user_email, user_password, scope: scopes)
     end
 
+    def asynchronous_get_request(token, endpoint)
+      begin
+        response = token.get(endpoint)
+      rescue OAuth2::Error => e
+        json = JSON.parse(e.response.body)
+        count = 0
+        while wait_for_response && json["success"] == false && json["message"] == "Not ready" && e.response.status == 503
+          count += 1
+          if count > 6
+            raise "Gave up waiting for #{endpoint} to be ready"
+          end
+
+          putc "z"
+          sleep(2 ** count) # exponential backoff
+          begin
+            response = token.get(endpoint)
+            json = JSON.parse(response.body)
+          rescue OAuth2::Error => e2
+            # Try again...
+            e = e2
+            json = JSON.parse(e2.response.body)
+          end
+        end
+
+        expect_success(json)
+      end
+      response
+    end
+
     shared_examples "a successful request" do
-      let(:response) { oauth2_token.get(endpoint) }
+      let(:wait_for_response) { false }
+      let(:response) { asynchronous_get_request(oauth2_token, endpoint) }
       let(:json) { JSON.parse(response.body) }
       let(:result) do
         expect_success(json)
@@ -66,34 +96,7 @@ module Oauth2Support
 
     shared_examples "a second successful request" do
       let(:wait_for_response) { false }
-      let(:response2) do
-        begin
-          response = oauth2_token.get(endpoint2)
-        rescue OAuth2::Error => e
-          json = JSON.parse(e.response.body)
-          count = 0
-          while wait_for_response && json["success"] == false && json["message"] == "Not ready" && e.response.status == 503
-            count += 1
-            if count > 6
-              raise "Gave up waiting for #{endpoint2} to be ready"
-            end
-
-            putc "z"
-            sleep(2 ** count) # exponential backoff
-            begin
-              response = oauth2_token.get(endpoint2)
-              json = JSON.parse(response.body)
-            rescue OAuth2::Error => e2
-              # Try again...
-              e = e2
-              json = JSON.parse(e2.response.body)
-            end
-          end
-
-          expect_success(json)
-        end
-        response
-      end
+      let(:response2) { asynchronous_get_request(oauth2_token, endpoint2) }
       let(:json2) { JSON.parse(response2.body) }
       let(:result2) do
         expect_success(json2)

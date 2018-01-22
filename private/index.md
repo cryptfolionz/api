@@ -220,7 +220,7 @@ DELETE /api/portfolios/1
 }
 ```
 
-### GET /api/portfolios/ID/balances <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/balances <span class="latest">latest</span> <span class="async">async</span>
 
 Get all current balances for a portfolio (the current balances of all account and addresses, summed together).
 
@@ -232,21 +232,17 @@ GET /api/portfolios/1/balances
 {
   "success": true,
   "time": 1512697998,
-  "result": {
-    "balances": [{
-      "currency": "btc",
-      "balance": "10.3456",
-      "balance_at": "2017-11-06T04:54:54+00:00",
-      "source": "cryptfolio"
-    }, {
-      "currency": "ltc",
-      "balance": "1023.416",
-      "balance_at": "2017-11-06T04:54:54+00:00",
-      "source": "cryptfolio"
-    }, {
-      ...
-    }]
-  }
+  "result": [{
+    "currency": "btc",
+    "balance": "10.0",
+    "balance_at": "2017-11-06T04:54:54+00:00",
+    "source": "cryptfolio"
+  }, {
+    "currency": "usd",
+    "balance": "0.0",
+    "balance_at": "2017-11-06T04:54:54+00:00",
+    "source": "cryptfolio"
+  }]
 }
 ```
 
@@ -260,35 +256,32 @@ Get the historical balances for a portfolio.
 
 Get the historical balances for a portfolio for a particular currency.
 
+### GET /api/portfolios/ID/converted <span class="latest">latest</span> <span class="async">async</span>
+
+Get the converted balances for a portfolio, in each of the users' portfolio currencies, as if
+all balances across all currencies were converted into that currency.
+
 ```
-GET /api/portfolios/1/balances/btc/history
+GET /api/portfolios/1/converted
 ```
 
 ```ruby
 {
   "success": true,
   "time": 1512697998,
-  "result": {
-    "balances": [{
-      "currency": "btc",
-      "balance": "10.3456",
-      "balance_at": "2017-11-06T12:00:00+00:00",
-      "source": "cryptfolio"
-    }, {
-      "currency": "btc",
-      "balance": "9.3456",
-      "balance_at": "2017-11-05T12:00:00+00:00",
-      "source": "cryptfolio"
-    }, {
-      ...
-    }]
-  }
+  "result": [{
+    "currency": "btc",
+    "balance": "10.0",
+    "balance_at": "2017-11-06T04:54:54+00:00",
+    "source": "cryptfolio"
+  }, {
+    "currency": "usd",
+    "balance": "117753.60",         # e.g. BTC/USD is 11,775.36
+    "balance_at": "2017-11-06T04:54:54+00:00",
+    "source": "cryptfolio"
+  }]
 }
 ```
-
-### GET /api/portfolios/ID/converted <span class="coming">coming soon</span>
-
-Get the converted balances for a portfolio.
 
 ### GET /api/portfolios/ID/converted/history <span class="coming">coming soon</span>
 

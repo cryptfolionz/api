@@ -34,7 +34,7 @@ module PortfolioSupport
       expect_success(create_portfolio_json)
       create_portfolio_json["result"]
     end
-    let(:portfolio) { create_portfolio_result }
+    let!(:portfolio) { create_portfolio_result }
 
     def delete_all_portfolios!
       response = oauth2_token.get("/api/portfolios")
@@ -46,6 +46,23 @@ module PortfolioSupport
         expect_success(json)
       end
       puts "--> Deleted #{json["result"].count} existing portfolios"
+    end
+
+    shared_examples "with a bitcoin address" do
+      let(:create_address_address) { "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu" }
+      let(:create_address_endpoint) { "/api/portfolios/#{portfolio["id"]}/addresses" }
+      let(:create_address_arguments) { {
+        title: "New address #{SecureRandom.hex}",
+        currency: ["btc"],
+        address: create_address_address,
+      } }
+      let(:create_address_response) { oauth2_token.post(create_address_endpoint, { body: create_address_arguments }) }
+      let(:create_address_json) { JSON.parse(create_address_response.body) }
+      let(:create_address_result) do
+        expect_success(create_address_json)
+        create_address_json["result"]
+      end
+      let!(:address) { create_address_result }
     end
   end
 end
