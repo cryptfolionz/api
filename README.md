@@ -32,7 +32,7 @@ For example:
 GET /api/portfolios/1/balances
 ```
 
-```json
+```ruby
 {
   "success": false,
   "time": 1512697998,

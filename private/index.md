@@ -19,7 +19,7 @@ Retrieve key information about this user.
 GET /api/user
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
@@ -55,7 +55,7 @@ List the properties and accounts of a portfolio.
 GET /api/portfolios/1
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
@@ -86,7 +86,7 @@ Get all current balances for a portfolio (the current balances of all account an
 GET /api/portfolios/1/balances
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
@@ -122,7 +122,7 @@ Get the historical balances for a portfolio for a particular currency.
 GET /api/portfolios/1/balances/btc/history
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
@@ -160,7 +160,7 @@ List the currencies on a portfolio.
 GET /api/portfolios/1/currencies
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
@@ -193,7 +193,7 @@ List the addresses on a portfolio. This will list the public address hashes for 
 GET /api/portfolios/1/addresses
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
@@ -260,7 +260,7 @@ List the accounts on a portfolio. This list will not reveal keys or secrets.
 GET /api/portfolios/1/accounts
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,

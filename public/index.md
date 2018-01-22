@@ -12,7 +12,7 @@ Lists all known currencies. (_[example](https://preview.cryptfolio.com/api/curre
 GET /api/currencies
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
@@ -44,7 +44,7 @@ Get the information about a currency. (_[example](https://preview.cryptfolio.com
 GET /api/currencies/btc
 ```
 
-```json
+```ruby
 {
   "success": true,
   "time": 1512697998,
