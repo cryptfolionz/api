@@ -285,7 +285,7 @@ Get the historical converted balances for a portfolio.
 
 # Addresses
 
-### GET /api/portfolios/ID/addresses <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/addresses <span class="latest">latest</span>
 
 List the addresses on a portfolio. This will list the public address hashes for each address.
 
@@ -297,37 +297,39 @@ GET /api/portfolios/1/addresses
 {
   "success": true,
   "time": 1512697998,
+  "result": [{
+    "id": 1,
+    "title": "My address",
+    "address": "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu",
+    "currency": { "title": "Bitcoin", "code": "btc" }
+  }, {
+    ...
+  }]
+}
+```
+
+### GET /api/portfolios/ID/addresses <span class="latest">latest</span>
+
+Get the full details of an address.
+
+```
+GET /api/portfolios/1/addresses/1
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
   "result": {
-    "addresses": [{
-      "id": 1,
-      "title": "My address",
-      "currency": "btc",
-      "address": "18AFFdLPk7Sg1zu8HZanVYZ1dBkhheRr7Z",
-      "source": "web",
+    "id": 1,
+    "title": "My address",
+    "address": "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu",
+    "currency": { "title": "Bitcoin", "code": "btc" },
+    "valid": true,
 
-      "is_invalid": true,
-      "latest_error": "Invalid checksum",
-
-      "created_at": "2017-11-06T04:54:54.000Z",
-      "updated_at": "2017-11-23T23:01:44.000Z",
-      "last_updated": "2017-11-23T23:01:44.000Z",
-      "txns_last_updated": "2017-11-23T23:01:44.000Z",
-
-      "balances_ready": true,
-      "next_update": "2017-11-24T23:01:44.000Z",
-
-      "balances": [{
-        "currency": "btc",
-        "balance": "0.0",
-        "balance_at": "2017-11-06T04:54:54.000Z",
-        "sent": "1.23176138",
-        "received": "1.23176138",
-        "tranasctions": 118,
-        "source": "blockchain.info"
-      }]
-    }, {
-      ...
-    }]
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+    "txns_last_updated": "2017-11-23T23:01:44.000Z"
   }
 }
 ```
@@ -344,13 +346,87 @@ Get the transactions for a particular address.
 
 Get the daily history for a particular address.
 
-### POST /api/portfolios/ID/addresses <span class="coming">coming soon</span>
+### POST /api/portfolios/ID/addresses <span class="latest">latest</span>
 
 Create a new portfolio address.
 
-### DELETE /api/portfolios/ID/addresses <span class="coming">coming soon</span>
+```
+POST /api/portfolios/1/addresses
+
+{"title":"New address","address":"1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu","currency":"btc"}
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 2,
+    "title": "New address",
+    "address": "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu",
+    "currency": { "title": "Bitcoin", "code": "btc" },
+    "valid": true,
+
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+    "txns_last_updated": null
+  }
+}
+```
+
+### PATCH /api/portfolios/ID/addresses/ID <span class="latest">latest</span>
+
+Update an existing address with a title or address.
+
+```
+PATCH /api/portfolios/1/addresses/2
+
+{"title":"A new address title"}
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 2,
+    "title": "A new address title",
+    "address": "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu",
+    "currency": { "title": "Bitcoin", "code": "btc" },
+    "valid": true,
+
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+    "txns_last_updated": null
+  }
+}
+```
+
+### DELETE /api/portfolios/ID/addresses <span class="latest">latest</span>
 
 Delete a portfolio address.
+
+```
+DELETE /api/portfolios/1/addresses/2
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 2,
+    "title": "A new address title",
+    "address": "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu",
+    "currency": { "title": "Bitcoin", "code": "btc" },
+    "valid": true,
+
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+    "txns_last_updated": null
+  }
+}
+```
 
 # Accounts
 
@@ -366,25 +442,21 @@ GET /api/portfolios/1/accounts
 {
   "success": true,
   "time": 1512697998,
-  "result": {
-    "accounts": [{
-      "id": 1,
-      "title": "My account",
-      "type": "bittrex",
-      "source": "web",
+  "result": [{
+  "accounts": [{
+    "id": 1,
+    "title": "My account",
+    "wallet": { "title": "Bittrex", "code": "bittrex" },
+    "valid": true,
 
-      "is_invalid": false,
-      "latest_error": null,
-
-      "created_at": "2017-11-06T04:54:54.000Z",
-      "updated_at": "2017-11-23T23:01:44.000Z",
-      "last_updated": "2017-11-23T23:01:44.000Z",
-      "txns_last_updated": "2017-11-23T23:01:44.000Z",
-      "history_last_updated": "2017-11-23T23:01:44.000Z"
-    }, {
-      ...
-    }]
-  }
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+    "last_updated": "2017-11-23T23:01:44.000Z",
+    "txns_last_updated": "2017-11-23T23:01:44.000Z",
+    "history_last_updated": "2017-11-23T23:01:44.000Z"
+  }, {
+    ...
+  }]
 }
 ```
 ### GET /api/portfolios/ID/accounts/ID/balances <span class="coming">coming soon</span>
