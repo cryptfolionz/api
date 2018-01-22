@@ -67,17 +67,17 @@ GET /api/currencies/btc
 
 List all exchanges that trade that currency.
 
-### GET /api/currencies/crypto <span class="coming">coming soon</span>
+### GET /api/currencies/cryptocurrencies <span class="latest">latest</span>
 
-Lists all known cryptocurrencies.
+Lists all known cryptocurrencies. (_[example](https://preview.cryptfolio.com/api/currencies/cryptocurrencies)_)
 
-### GET /api/currencies/fiat <span class="coming">coming soon</span>
+### GET /api/currencies/fiat <span class="latest">latest</span>
 
-Lists all known fiat currencies.
+Lists all known fiat currencies. (_[example](https://preview.cryptfolio.com/api/currencies/fiat)_)
 
-### GET /api/currencies/tokens <span class="coming">coming soon</span>
+### GET /api/currencies/tokens <span class="latest">latest</span>
 
-Lists all known Ethereum tokens.
+Lists all known Ethereum tokens. (_[example](https://preview.cryptfolio.com/api/currencies/tokens)_)
 
 ### GET /api/exchanges <span class="coming">coming soon</span>
 

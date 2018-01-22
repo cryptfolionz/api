@@ -15,6 +15,7 @@ describe "/currencies" do
     "ethereum_contract_address",
     "source",
   ] }
+
   let(:bitcoin_parameters) {{
     "code":              "btc",
     "title":             "Bitcoin",
@@ -22,6 +23,24 @@ describe "/currencies" do
     "is_fiat":           false,
     "is_ethereum_token": false,
     "ethereum_contract_address": nil,
+  }}
+
+  let(:usdollar_parameters) {{
+    "code":              "usd",
+    "title":             "United States dollar",
+    "is_cryptocurrency": false,
+    "is_fiat":           true,
+    "is_ethereum_token": false,
+    "ethereum_contract_address": nil,
+  }}
+
+  let(:augur_parameters) {{
+    "code":              "rep",
+    "title":             "Reputation",
+    "is_cryptocurrency": false,
+    "is_fiat":           false,
+    "is_ethereum_token": true,
+    "ethereum_contract_address": "0xe94327d07fc17907b4db788e5adf2ed424addff6",
   }}
 
   it_behaves_like "a web client" do
@@ -59,6 +78,66 @@ describe "/currencies" do
         it_behaves_like "a failed request" do
           let(:code)    { 404 }
           let(:message) { "Not found" }
+        end
+      end
+    end
+
+    describe "#cryptocurrencies" do
+      let(:endpoint) { "/api/currencies/cryptocurrencies" }
+
+      it_behaves_like "a successful request" do
+        it "returns a list of cryptocurrencies" do
+          expect(result["currencies"].length).to eq result["count"]
+
+          currency = result["currencies"].first
+          expect(currency.keys.sort).to eq currency_keys.sort
+
+          result["currencies"].each do |cur|
+            expect(cur["is_cryptocurrency"]).to eq true
+          end
+
+          bitcoin = result["currencies"].select { |currency| currency["code"] == "btc" }.first
+          expect_hash_match(bitcoin, bitcoin_parameters)
+        end
+      end
+    end
+
+    describe "#fiat" do
+      let(:endpoint) { "/api/currencies/fiat" }
+
+      it_behaves_like "a successful request" do
+        it "returns a list of fiat currencies" do
+          expect(result["currencies"].length).to eq result["count"]
+
+          currency = result["currencies"].first
+          expect(currency.keys.sort).to eq currency_keys.sort
+
+          result["currencies"].each do |cur|
+            expect(cur["is_fiat"]).to eq true
+          end
+
+          usdollar = result["currencies"].select { |currency| currency["code"] == "usd" }.first
+          expect_hash_match(usdollar, usdollar_parameters)
+        end
+      end
+    end
+
+    describe "#tokens" do
+      let(:endpoint) { "/api/currencies/tokens" }
+
+      it_behaves_like "a successful request" do
+        it "returns a list of Ethereum tokens" do
+          expect(result["currencies"].length).to eq result["count"]
+
+          currency = result["currencies"].first
+          expect(currency.keys.sort).to eq currency_keys.sort
+
+          result["currencies"].each do |cur|
+            expect(cur["is_ethereum_token"]).to eq true
+          end
+
+          augur = result["currencies"].select { |currency| currency["code"] == "rep" }.first
+          expect_hash_match(augur, augur_parameters)
         end
       end
     end
