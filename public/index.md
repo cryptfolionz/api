@@ -4,9 +4,9 @@
 
 All of these endpoints can be requested directly or through OAuth2. (In the future, authentication through OAuth2 will give you higher request limits.)
 
-### GET [/api/currencies](https://preview.cryptfolio.com/api/currencies) <span class="latest">latest</span>
+### GET /api/currencies <span class="latest">latest</span>
 
-Lists all known currencies.
+Lists all known currencies. (_[example](https://preview.cryptfolio.com/api/currencies)_)
 
 ```
 GET /api/currencies
@@ -19,9 +19,9 @@ GET /api/currencies
   "result": {
     "count": 646,
     "currencies": [{
-      "id": 1,
+      "id": 1,                # Unique currency ID, immutable
+      "code": "btc",          # Unique currency code, mutable
       "title": "Bitcoin",
-      "code": "btc",
       "created_at": "2017-11-06T04:54:54.000Z",
       "updated_at": "2017-11-23T23:01:44.000Z",
       "is_cryptocurrency": true,
@@ -36,9 +36,9 @@ GET /api/currencies
 }
 ```
 
-### GET /api/currencies/CODE <span class="coming">coming soon</span>
+### GET /api/currencies/CODE <span class="latest">latest</span>
 
-Get the information about a currency.
+Get the information about a currency. (_[example](https://preview.cryptfolio.com/api/currencies/btc)_)
 
 ```
 GET /api/currencies/btc
@@ -49,9 +49,9 @@ GET /api/currencies/btc
   "success": true,
   "time": 1512697998,
   "result": {
-    "id": 1,
+    "id": 1,                # Unique currency ID, immutable
+    "code": "btc",          # Unique currency code, mutable
     "title": "Bitcoin",
-    "code": "btc",
     "created_at": "2017-11-06T04:54:54.000Z",
     "updated_at": "2017-11-23T23:01:44.000Z",
     "is_cryptocurrency": true,
@@ -98,3 +98,11 @@ Lists historical rates for a particular currency pair on an exchange.
 ```
 GET /api/exchanges/bitstamp/btc/usd
 ```
+
+### GET /api/sources <span class="coming">coming soon</span>
+
+List all known data sources.
+
+### GET /api/source/KEY <span class="coming">coming soon</span>
+
+List information about a given data source key.

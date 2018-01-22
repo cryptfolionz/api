@@ -43,4 +43,40 @@ module FetchSupport
 
     expect(a.select { |k, v| new_b.keys.include?(k) }.sort).to eq(new_b.sort)
   end
+
+  shared_examples "a web client" do
+    shared_examples "a successful request" do
+      let(:json) { fetch_json("#{ENV['HOST']}#{endpoint}") }
+      let(:result) { json["result"] }
+
+      it "is a succesful request" do
+        expect(json["success"]).to eq true
+        expect(json["time"]).to be >= (Time.now - 1.hour).to_i
+        expect(json["time"]).to be <= (Time.now + 1.hour).to_i
+        expect(json["result"]).to_not be_nil
+      end
+    end
+
+    shared_examples "a failed request" do
+      let(:json) do
+        begin
+          fetch_json("#{ENV['HOST']}#{endpoint}")
+          raise "Did not expect the request to succeed"
+        rescue RestClient::ExceptionWithResponse => e
+          @code = e.response.code
+          JSON.parse(e.response.body)
+        end
+      end
+      let(:result) { json["result"] }
+
+      it "is a failed request" do
+        expect(json["success"]).to eq false
+        expect(json["time"]).to be >= (Time.now - 1.hour).to_i
+        expect(json["time"]).to be <= (Time.now + 1.hour).to_i
+        expect(json["message"]).to eq message
+        expect(json["result"]).to be_nil
+        expect(@code).to eq code
+      end
+    end
+  end
 end
