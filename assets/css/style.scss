@@ -3,7 +3,7 @@
 
 @import "{{ site.theme }}";
 
-span.latest, span.coming {
+span.latest, span.coming, span.async, span.v1, span.v2 {
   font-size: .5em;
   border: thin solid #999;
   color: #999;
@@ -14,13 +14,20 @@ span.latest, span.coming {
   border-radius: .25em;
 }
 
-span.latest { 
+span.latest {
   border-color: #141;
   color: #141;
   background: #aea;
-} 
-span.coming { 
+}
+
+span.coming {
   border-color: #643;
   color: #643;
   background: #dcb;
-} 
+}
+
+span.async {
+  border-color: #933;
+  color: #933;
+  background: #ebb;
+}

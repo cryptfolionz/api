@@ -15,13 +15,13 @@ Do not request an endpoint more than once per five seconds or you may be automat
 
 At some point in the future, we will push out a stable `v1` of this API which you can use to build long-term applications. At any time, you can use the `latest` version to access new features, however this API may change at any time.
 
-| Version | Description | Example |
-|---------|-------------|---------|
-| latest  | The latest version of the API. The fields and availability of this API can change without notice. | `/api/currencies` |
-| v1  | Stable as at TODO (not released yet) | `/api/v1/currencies` |
-| v2  | Stable as at TODO (not released yet) | `/api/v2/currencies` |
+| Version | Description | Example | Label |
+|---------|-------------|---------|-------|
+| latest  | The latest version of the API. The fields and availability of this API can change without notice. | `/api/currencies` | <span class="latest">latest</span> |
+| v1  | Stable as at TODO (not released yet) | `/api/v1/currencies` | <span class="v1">v1</span> |
+| v2  | Stable as at TODO (not released yet) | `/api/v2/currencies` | <span class="v2">v2</span> |
 
-## Asynchronous endpoints
+## Asynchronous endpoints <span class="async">async</span>
 
 Some of these endpoints are asynchronous - for example, endpoints where a
 balance or value has to be downloaded or generated. In this case, your
@@ -50,6 +50,7 @@ Make sure that you implement an exponential backoff between successive requests
 
 * All dates are in ISO8601 format, e.g. `"2001-02-03T04:05:06+00:00"`
 * All currency values are returned as strings, rather than floats, e.g. `"50.00501"`
+* Most API responses include the `source` that was used to obtain the data, if not calculated or processed directly by CryptFolio.
 
 # TODO
 

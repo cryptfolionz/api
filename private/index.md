@@ -39,7 +39,7 @@ GET /api/user
   "result": {
     "name": "Test user",
     "email": "test@openclerk.org",
-    "created_at": "2017-11-06T04:54:54.000Z"
+    "created_at": "2017-11-06T04:54:54+00:00"
   }
 }
 ```
@@ -61,13 +61,13 @@ GET /api/portfolios
   "result": [{
       "id": 1,
       "title": "My portfolio",
-      "created_at": "2017-11-06T04:54:54.000Z",
-      "updated_at": "2017-11-23T23:01:44.000Z",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
 
-      "balances_last_updated": "2017-11-23T23:01:44.000Z",
-      "histories_last_updated": "2017-11-23T23:01:44.000Z",
-      "converted_balances_last_updated": "2017-11-23T23:01:44.000Z",
-      "converted_histories_last_updated": "2017-11-23T23:01:44.000Z",
+      "balances_last_updated": "2017-11-23T23:01:44+00:00",
+      "histories_last_updated": "2017-11-23T23:01:44+00:00",
+      "converted_balances_last_updated": "2017-11-23T23:01:44+00:00",
+      "converted_histories_last_updated": "2017-11-23T23:01:44+00:00",
 
       "currencies": 3,
       "accounts": 4,
@@ -95,13 +95,13 @@ GET /api/portfolios/1
   "result": {
     "id": 1,
     "title": "My portfolio",
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
 
-    "balances_last_updated": "2017-11-23T23:01:44.000Z",
-    "histories_last_updated": "2017-11-23T23:01:44.000Z",
-    "converted_balances_last_updated": "2017-11-23T23:01:44.000Z",
-    "converted_histories_last_updated": "2017-11-23T23:01:44.000Z",
+    "balances_last_updated": "2017-11-23T23:01:44+00:00",
+    "histories_last_updated": "2017-11-23T23:01:44+00:00",
+    "converted_balances_last_updated": "2017-11-23T23:01:44+00:00",
+    "converted_histories_last_updated": "2017-11-23T23:01:44+00:00",
 
     "currencies": [...],
     "accounts": [...],
@@ -128,8 +128,8 @@ POST /api/portfolios
   "result": {
     "id": 1,
     "title": "My portfolio",
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
 
     "balances_last_updated": null,
     "histories_last_updated": null,
@@ -165,8 +165,8 @@ PATCH /api/portfolios/1
   "result": {
     "id": 1,
     "title": "My updated portfolio",
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
 
     "balances_last_updated": null,
     "histories_last_updated": null,
@@ -200,8 +200,8 @@ DELETE /api/portfolios/1
   "result": {
     "id": 1,
     "title": "My portfolio",
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
 
     "balances_last_updated": null,
     "histories_last_updated": null,
@@ -236,12 +236,12 @@ GET /api/portfolios/1/balances
     "balances": [{
       "currency": "btc",
       "balance": "10.3456",
-      "balance_at": "2017-11-06T04:54:54.000Z",
+      "balance_at": "2017-11-06T04:54:54+00:00",
       "source": "cryptfolio"
     }, {
       "currency": "ltc",
       "balance": "1023.416",
-      "balance_at": "2017-11-06T04:54:54.000Z",
+      "balance_at": "2017-11-06T04:54:54+00:00",
       "source": "cryptfolio"
     }, {
       ...
@@ -272,12 +272,12 @@ GET /api/portfolios/1/balances/btc/history
     "balances": [{
       "currency": "btc",
       "balance": "10.3456",
-      "balance_at": "2017-11-06T12:00:00.000Z",
+      "balance_at": "2017-11-06T12:00:00+00:00",
       "source": "cryptfolio"
     }, {
       "currency": "btc",
       "balance": "9.3456",
-      "balance_at": "2017-11-05T12:00:00.000Z",
+      "balance_at": "2017-11-05T12:00:00+00:00",
       "source": "cryptfolio"
     }, {
       ...
@@ -338,24 +338,67 @@ GET /api/portfolios/1/addresses/1
     "currency": { "title": "Bitcoin", "code": "btc" },
     "valid": true,
 
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
-    "txns_last_updated": "2017-11-23T23:01:44.000Z"
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+    "txns_last_updated": "2017-11-23T23:01:44+00:00"
   }
 }
 ```
 
-### GET /api/portfolios/ID/addresses/ID/balances <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/addresses/ID/balances <span class="latest">latest</span> <span class="async">async</span>
 
 Get the balances for a particular address.
 
-### GET /api/portfolios/ID/addresses/ID/txns <span class="coming">coming soon</span>
+```
+GET /api/portfolios/1/addresses/1/balances
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": [{
+    "currency": { "title": "Bitcoin", "code": "btc" },
+    "balance": "50.00501",
+    "transactions": 3,           # may be null
+    "sent": "0.0",               # may be null
+    "received": "50.00501",      # may be null
+
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+
+    "source": "blocktrail"
+  }]
+}
+```
+
+### GET /api/portfolios/ID/addresses/ID/transactions <span class="latest">latest</span> <span class="async">async</span>
 
 Get the transactions for a particular address.
 
-### GET /api/portfolios/ID/addresses/ID/history <span class="coming">coming soon</span>
+```
+GET /api/portfolios/1/addresses/1/transactions
+```
 
-Get the daily history for a particular address.
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": [{
+    "currency": { "title": "Bitcoin", "code": "btc" },
+    "delta": "50.0",             # positive (incoming) or negative (outgoing)
+    "txn_at": "2017-11-06T04:54:54+00:00",
+    "fee": "0.0",                # any fee associated with the txn, may be null
+    "reference": "abc123",       # any reference associated with the txn, may be null;
+                                 # for addresses, this is often the network transaction ID
+
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+
+    "source": "blocktrail"
+  }]
+}
+```
 
 ### POST /api/portfolios/ID/addresses <span class="latest">latest</span>
 
@@ -378,8 +421,8 @@ POST /api/portfolios/1/addresses
     "currency": { "title": "Bitcoin", "code": "btc" },
     "valid": true,
 
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
     "txns_last_updated": null
   }
 }
@@ -406,8 +449,8 @@ PATCH /api/portfolios/1/addresses/2
     "currency": { "title": "Bitcoin", "code": "btc" },
     "valid": true,
 
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
     "txns_last_updated": null
   }
 }
@@ -432,8 +475,8 @@ DELETE /api/portfolios/1/addresses/2
     "currency": { "title": "Bitcoin", "code": "btc" },
     "valid": true,
 
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
     "txns_last_updated": null
   }
 }
@@ -460,11 +503,11 @@ GET /api/portfolios/1/accounts
     "wallet": { "title": "Bittrex", "code": "bittrex" },
     "valid": true,
 
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
-    "last_updated": "2017-11-23T23:01:44.000Z",
-    "txns_last_updated": "2017-11-23T23:01:44.000Z",
-    "history_last_updated": "2017-11-23T23:01:44.000Z"
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+    "last_updated": "2017-11-23T23:01:44+00:00",
+    "txns_last_updated": "2017-11-23T23:01:44+00:00",
+    "history_last_updated": "2017-11-23T23:01:44+00:00"
   }, {
     ...
   }]
