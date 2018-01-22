@@ -5,6 +5,7 @@
 * [Public API Reference](public/)
 * [Private API Reference](private/)
 * [Enterprise API Reference](enterprise/)
+* [Suggest a new API](https://github.com/cryptfolionz/api/issues)
 * [Example Code](examples/)
 
 ## Request format
