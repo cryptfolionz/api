@@ -11,6 +11,17 @@ With all of these endpoints you will need to get permission from the user to acc
 
 See [some example OAuth2 authentication code](../examples/).
 
+### Scopes
+
+Endpoints require the following scopes:
+
+* **GET** (read data) requires one of the `admin` or `read` scopes.
+* **POST** (create new) requires one of the `admin` or `read` scopes, AND one of the `admin` or `write` scopes.
+* **PATCH** (update existing) requires one of the `admin` or `read` scopes, AND one of the `admin` or `write` scopes.
+* **DELETE** (delete existing) requires one of the `admin` or `read` scopes, AND one of the `admin` or `delete` scopes.
+
+If the user has not provided your application with sufficient scope your request will fail with `403 Forbidden`.
+
 # User information
 
 ### GET /api/user <span class="latest">latest</span>
