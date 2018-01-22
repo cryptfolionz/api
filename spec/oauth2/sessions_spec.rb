@@ -44,9 +44,7 @@ describe "/user" do
       context "with a scope that doesn't provide enough access" do
         let(:scopes) { "public" }
 
-        it_behaves_like "a failed OAuth2 request" do
-          let(:error_code) { "invalid_scope" }
-        end
+        it_behaves_like "a forbidden OAuth2 request"
       end
     end
   end
