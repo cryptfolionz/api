@@ -9,6 +9,12 @@ describe "/portfolios" do
     let(:scopes) { "read write delete" }
 
     context "creating a portfolio" do
+      it_behaves_like "with a portfolio" do
+        it "first deletes any existing portfolios" do
+          expect(portfolio).to_not be_empty
+        end
+      end
+
       let(:endpoint) { "/api/portfolios" }
       let(:portfolio_title) { "New portfolio #{Time.now} #{SecureRandom.hex}" }
       let(:portfolio_currencies) { ["btc", "usd"] }
