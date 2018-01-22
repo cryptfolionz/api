@@ -65,7 +65,35 @@ module Oauth2Support
     end
 
     shared_examples "a second successful request" do
-      let(:response2) { oauth2_token.get(endpoint2) }
+      let(:wait_for_response) { false }
+      let(:response2) do
+        begin
+          response = oauth2_token.get(endpoint2)
+        rescue OAuth2::Error => e
+          json = JSON.parse(e.response.body)
+          count = 0
+          while wait_for_response && json["success"] == false && json["message"] == "Not ready" && e.response.status == 503
+            count += 1
+            if count > 6
+              raise "Gave up waiting for #{endpoint2} to be ready"
+            end
+
+            putc "z"
+            sleep(2 ** count) # exponential backoff
+            begin
+              response = oauth2_token.get(endpoint2)
+              json = JSON.parse(response.body)
+            rescue OAuth2::Error => e2
+              # Try again...
+              e = e2
+              json = JSON.parse(e2.response.body)
+            end
+          end
+
+          expect_success(json)
+        end
+        response
+      end
       let(:json2) { JSON.parse(response2.body) }
       let(:result2) do
         expect_success(json2)

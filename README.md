@@ -30,19 +30,26 @@ request will receive an error status of "loading", and you should try again late
 For example:
 
 ```
-GET /api/portfolios/1/balances
+GET /api/portfolios/1/addresses/1/balances
 ```
 
 ```ruby
+503 Service Unavailable
+
 {
   "success": false,
   "time": 1512697998,
-  "loading": true,
-  "try_again_at": "2017-11-06T04:54:54.000Z"
+  "message": "Not ready"
 }
 ```
 
-In this response, `try_again_at` gives a time that you can reasonably expect the result should be available, so that you don't have to continually poll the endpoint until the result is ready.
+Make sure that you implement an exponential backoff between successive requests
+(e.g. 2^n seconds between requests) to prevent getting automatically blocked.
+
+## Types
+
+* All dates are in ISO8601 format, e.g. `"2001-02-03T04:05:06+00:00"`
+* All currency values are returned as strings, rather than floats, e.g. `"50.00501"`
 
 # TODO
 
