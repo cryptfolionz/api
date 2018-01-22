@@ -80,6 +80,37 @@ GET /api/portfolios
 }
 ```
 
+### GET /api/portfolios/ID <span class="latest">latest</span>
+
+List the properties and accounts of a portfolio.
+
+```
+GET /api/portfolios/1
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 1,
+    "title": "My portfolio",
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+
+    "balances_last_updated": "2017-11-23T23:01:44.000Z",
+    "histories_last_updated": "2017-11-23T23:01:44.000Z",
+    "converted_balances_last_updated": "2017-11-23T23:01:44.000Z",
+    "converted_histories_last_updated": "2017-11-23T23:01:44.000Z",
+
+    "currencies": [...],
+    "accounts": [...],
+    "addresses": [...],
+    "offsets": [...]
+  }
+}
+```
+
 ### POST /api/portfolios <span class="latest">latest</span>
 
 Create a new portfolio.
@@ -185,37 +216,6 @@ DELETE /api/portfolios/1
     "accounts": [],
     "addresses": [],
     "offsets": []
-  }
-}
-```
-
-### GET /api/portfolios/ID <span class="latest">latest</span>
-
-List the properties and accounts of a portfolio.
-
-```
-GET /api/portfolios/1
-```
-
-```ruby
-{
-  "success": true,
-  "time": 1512697998,
-  "result": {
-    "id": 1,
-    "title": "My portfolio",
-    "created_at": "2017-11-06T04:54:54.000Z",
-    "updated_at": "2017-11-23T23:01:44.000Z",
-
-    "balances_last_updated": "2017-11-23T23:01:44.000Z",
-    "histories_last_updated": "2017-11-23T23:01:44.000Z",
-    "converted_balances_last_updated": "2017-11-23T23:01:44.000Z",
-    "converted_histories_last_updated": "2017-11-23T23:01:44.000Z",
-
-    "currencies": [...],
-    "accounts": [...],
-    "addresses": [...],
-    "offsets": [...]
   }
 }
 ```
