@@ -1,6 +1,12 @@
 [< Back](../)
 
-# Sample authentication code
+# Sample authorisation screen
+
+When you use OAuth2 to request access to a users' account, they will be presented (when you redirect them to `auth_url`) with a screen such as this one:
+
+![Sample authorisation screen](../images/authorization.png)
+
+# Sample authorisation code
 
 ### Ruby
 
