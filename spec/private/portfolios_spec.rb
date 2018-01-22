@@ -29,7 +29,7 @@ describe "/portfolios" do
           expect(@created_id).to_not be_nil
         end
 
-        it "returns the created portfolio" do
+        it "returning the created portfolio" do
           expect(result["title"]).to eq portfolio_title
           expect(result["currencies"].map { |c| c["code"] }.sort).to eq portfolio_currencies.sort
         end
@@ -38,7 +38,7 @@ describe "/portfolios" do
           let(:endpoint2) { "/api/portfolios/#{@created_id}" }
 
           it_behaves_like "a second successful request" do
-            it "returns the new portfolio" do
+            it "returning the new portfolio" do
               expect(result["title"]).to eq portfolio_title
               expect(result["currencies"].map { |c| c["code"] }.sort).to eq portfolio_currencies.sort
             end
@@ -66,7 +66,7 @@ describe "/portfolios" do
         let(:arguments) { { title: new_title } }
 
         it_behaves_like "a successful PATCH request" do
-          it "returns the updated portfolio" do
+          it "returning the updated portfolio" do
             expect(result["id"]).to eq portfolio["id"]
             expect(result["title"]).to eq new_title
           end
@@ -75,7 +75,7 @@ describe "/portfolios" do
             let(:endpoint2) { "/api/portfolios/#{portfolio["id"]}" }
 
             it_behaves_like "a second successful request" do
-              it "returns the same portfolio" do
+              it "returning the same portfolio" do
                 expect(result["title"]).to eq new_title
               end
             end
@@ -94,7 +94,7 @@ describe "/portfolios" do
               it_behaves_like "a successful request" do
                 let(:wait_for_response) { true }
 
-                it "returns a list of total balances" do
+                it "returning a list of total balances" do
                   expect(result.length).to eq 2
 
                   expect(result.first["currency"]["code"]).to eq "btc"
@@ -116,7 +116,7 @@ describe "/portfolios" do
               it_behaves_like "a successful request" do
                 let(:wait_for_response) { true }
 
-                it "returns a list of total balances" do
+                it "returning a list of total converted balances" do
                   expect(result.length).to eq 2
 
                   expect(result.first["currency"]["code"]).to eq "btc"
