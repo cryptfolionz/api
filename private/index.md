@@ -35,17 +35,144 @@ GET /api/user
 
 List all of your portfolios.
 
-### POST /api/portfolios/create <span class="coming">coming soon</span>
+```
+GET /api/portfolios
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": [{
+      "id": 1,
+      "title": "My portfolio",
+      "created_at": "2017-11-06T04:54:54.000Z",
+      "updated_at": "2017-11-23T23:01:44.000Z",
+
+      "balances_last_updated": "2017-11-23T23:01:44.000Z",
+      "histories_last_updated": "2017-11-23T23:01:44.000Z",
+      "converted_balances_last_updated": "2017-11-23T23:01:44.000Z",
+      "converted_histories_last_updated": "2017-11-23T23:01:44.000Z",
+
+      "currencies": 3,
+      "accounts": 4,
+      "addresses": 5,
+      "offsets": 0
+    }, {
+      ...
+    }]
+  }
+}
+```
+
+### POST /api/portfolios <span class="latest">latest</span>
 
 Create a new portfolio.
 
-### PATCH /api/portfolios/ID <span class="coming">coming soon</span>
+```
+POST /api/portfolios
 
-Update the attributes of a portfolio.
+{"title":"My portfolio","currencies":["btc","usd"]}
+```
 
-### DELETE /api/portfolios/ID <span class="coming">coming soon</span>
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 1,
+    "title": "My portfolio",
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+
+    "balances_last_updated": null,
+    "histories_last_updated": null,
+    "converted_balances_last_updated": null,
+    "converted_histories_last_updated": null,
+
+    "currencies": [{
+      "title": "Bitcoin", "code": "btc"
+    }, {
+      "title": "United States dollar", "code": "usd"
+    }],
+    "accounts": [],
+    "addresses": [],
+    "offsets": []
+  }
+}
+```
+
+### PATCH /api/portfolios/ID <span class="latest">latest</span>
+
+Update the attributes or currencies of a portfolio.
+
+```
+PATCH /api/portfolios/1
+
+{"title":"My updated portfolio"}
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 1,
+    "title": "My updated portfolio",
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+
+    "balances_last_updated": null,
+    "histories_last_updated": null,
+    "converted_balances_last_updated": null,
+    "converted_histories_last_updated": null,
+
+    "currencies": [{
+      "title": "Bitcoin", "code": "btc"
+    }, {
+      "title": "United States dollar", "code": "usd"
+    }],
+    "accounts": [],
+    "addresses": [],
+    "offsets": []
+  }
+}
+```
+
+### DELETE /api/portfolios/ID <span class="latest">latest</span>
 
 Delete a portfolio.
+
+```
+DELETE /api/portfolios/1
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 1,
+    "title": "My portfolio",
+    "created_at": "2017-11-06T04:54:54.000Z",
+    "updated_at": "2017-11-23T23:01:44.000Z",
+
+    "balances_last_updated": null,
+    "histories_last_updated": null,
+    "converted_balances_last_updated": null,
+    "converted_histories_last_updated": null,
+
+    "currencies": [{
+      "title": "Bitcoin", "code": "btc"
+    }, {
+      "title": "United States dollar", "code": "usd"
+    }],
+    "accounts": [],
+    "addresses": [],
+    "offsets": []
+  }
+}
+```
 
 ### GET /api/portfolios/ID <span class="latest">latest</span>
 

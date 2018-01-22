@@ -1,6 +1,21 @@
 require 'oauth2'
 
 module Oauth2Support
+  def expect_success(json)
+    expect(json["success"]).to eq true
+    expect(json["time"]).to be >= (Time.now - 1.hour).to_i
+    expect(json["time"]).to be <= (Time.now + 1.hour).to_i
+    expect(json["result"]).to_not be_nil
+  end
+
+  def expect_failure(json)
+    expect(json["success"]).to eq false
+    expect(json["time"]).to be >= (Time.now - 1.hour).to_i
+    expect(json["time"]).to be <= (Time.now + 1.hour).to_i
+    expect(json["message"]).to eq message
+    expect(json["result"]).to be_nil
+  end
+
   shared_examples "an OAuth2 client" do
     let(:oauth2_key) { ENV['OAUTH2_KEY'] || fail("Need OAUTH2_KEY env variable set") }
     let(:oauth2_secret) { ENV['OAUTH2_SECRET'] || fail("Need OAUTH2_SECRET env variable set") }
@@ -43,27 +58,55 @@ module Oauth2Support
     shared_examples "a successful request" do
       let(:response) { oauth2_token.get(endpoint) }
       let(:json) { JSON.parse(response.body) }
-      let(:result) { json["result"] }
-
-      it "is a succesful request" do
-        expect(json["success"]).to eq true
-        expect(json["time"]).to be >= (Time.now - 1.hour).to_i
-        expect(json["time"]).to be <= (Time.now + 1.hour).to_i
-        expect(json["result"]).to_not be_nil
+      let(:result) do
+        expect_success(json)
+        json["result"]
       end
     end
 
-    shared_examples "a failed request" do
-      let(:response) { oauth2_token.get(endpoint) }
-      let(:json) { JSON.parse(response.body) }
-      let(:result) { json["result"] }
+    shared_examples "a second successful request" do
+      let(:response2) { oauth2_token.get(endpoint2) }
+      let(:json2) { JSON.parse(response2.body) }
+      let(:result2) do
+        expect_success(json2)
+        json2["result"]
+      end
+    end
 
-      it "is a failed request" do
-        expect(json["success"]).to eq false
-        expect(json["time"]).to be >= (Time.now - 1.hour).to_i
-        expect(json["time"]).to be <= (Time.now + 1.hour).to_i
-        expect(json["message"]).to eq message
-        expect(json["result"]).to be_nil
+    shared_examples "a successful POST request" do
+      let(:response) { oauth2_token.post(endpoint, { body: arguments }) }
+      let(:json) { JSON.parse(response.body) }
+      let(:result) do
+        expect_success(json)
+        json["result"]
+      end
+    end
+
+    shared_examples "a successful PATCH request" do
+      let(:response) { oauth2_token.patch(endpoint, { body: arguments }) }
+      let(:json) { JSON.parse(response.body) }
+      let(:result) do
+        expect_success(json)
+        json["result"]
+      end
+    end
+
+    shared_examples "a failed POST request" do
+      let(:error_code) { 400 } # Default
+      let(:response) do
+        response = nil
+        expect {
+          oauth2_token.post(endpoint, { body: arguments })
+        }.to raise_error(OAuth2::Error) do |e|
+          expect(e.response.status).to eq error_code
+          response = e.response
+        end
+        response
+      end
+      let(:json) { JSON.parse(response.body) }
+      let(:result) do
+        expect_failure(json)
+        json["result"]
       end
     end
 
@@ -82,6 +125,17 @@ module Oauth2Support
       it "raises an error" do
         expect {
           oauth2_token.get(endpoint)
+        }.to raise_error(OAuth2::Error) do |e|
+          expect(e.code).to eq nil
+          expect(e.response.status).to eq 403
+        end
+      end
+    end
+
+    shared_examples "a forbidden POST request" do
+      it "raises an error" do
+        expect {
+          oauth2_token.post(endpoint, { body: arguments })
         }.to raise_error(OAuth2::Error) do |e|
           expect(e.code).to eq nil
           expect(e.response.status).to eq 403
