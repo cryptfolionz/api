@@ -106,7 +106,8 @@ GET /api/portfolios/1
     "currencies": [...],
     "accounts": [...],
     "addresses": [...],
-    "offsets": [...]
+    "offsets": [...],
+    "source": "private-api"
   }
 }
 ```
@@ -143,7 +144,8 @@ POST /api/portfolios
     }],
     "accounts": [],
     "addresses": [],
-    "offsets": []
+    "offsets": [],
+    "source": "private-api"
   }
 }
 ```
@@ -180,7 +182,8 @@ PATCH /api/portfolios/1
     }],
     "accounts": [],
     "addresses": [],
-    "offsets": []
+    "offsets": [],
+    "source": "private-api"
   }
 }
 ```
@@ -215,7 +218,8 @@ DELETE /api/portfolios/1
     }],
     "accounts": [],
     "addresses": [],
-    "offsets": []
+    "offsets": [],
+    "source": "private-api"
   }
 }
 ```
@@ -312,7 +316,7 @@ GET /api/portfolios/1/addresses
 }
 ```
 
-### GET /api/portfolios/ID/addresses <span class="latest">latest</span>
+### GET /api/portfolios/ID/addresses/ID <span class="latest">latest</span>
 
 Get the full details of an address.
 
@@ -333,7 +337,8 @@ GET /api/portfolios/1/addresses/1
 
     "created_at": "2017-11-06T04:54:54+00:00",
     "updated_at": "2017-11-23T23:01:44+00:00",
-    "txns_last_updated": "2017-11-23T23:01:44+00:00"
+    "txns_last_updated": "2017-11-23T23:01:44+00:00",
+    "source": "private-api"
   }
 }
 ```
@@ -389,6 +394,8 @@ GET /api/portfolios/1/addresses/1/transactions
     "updated_at": "2017-11-23T23:01:44+00:00",
 
     "source": "blocktrail"
+  }, {
+    ...
   }]
 }
 ```
@@ -416,7 +423,8 @@ POST /api/portfolios/1/addresses
 
     "created_at": "2017-11-06T04:54:54+00:00",
     "updated_at": "2017-11-23T23:01:44+00:00",
-    "txns_last_updated": null
+    "txns_last_updated": null,
+    "source": "private-api"
   }
 }
 ```
@@ -444,7 +452,8 @@ PATCH /api/portfolios/1/addresses/2
 
     "created_at": "2017-11-06T04:54:54+00:00",
     "updated_at": "2017-11-23T23:01:44+00:00",
-    "txns_last_updated": null
+    "txns_last_updated": null,
+    "source": "private-api"
   }
 }
 ```
@@ -470,7 +479,8 @@ DELETE /api/portfolios/1/addresses/2
 
     "created_at": "2017-11-06T04:54:54+00:00",
     "updated_at": "2017-11-23T23:01:44+00:00",
-    "txns_last_updated": null
+    "txns_last_updated": null,
+    "source": "private-api"
   }
 }
 ```
@@ -518,20 +528,181 @@ GET /api/portfolios/1/accounts
 
 # Offsets
 
-### GET /api/portfolios/ID/offsets <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/offsets <span class="latest">latest</span>/span>
 
-### GET /api/portfolios/ID/offsets/ID/balances <span class="coming">coming soon</span>
+List the offsets on a portfolio.
 
-### GET /api/portfolios/ID/offsets/ID/txns <span class="coming">coming soon</span>
+```
+GET /api/portfolios/1/offsets
+```
 
-### GET /api/portfolios/ID/offsets/ID/history <span class="coming">coming soon</span>
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": [{
+    "id": 1,
+    "title": "My offset",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00"
+  }, {
+    ...
+  }]
+}
+```
 
-### POST /api/portfolios/ID/offsets <span class="coming">coming soon</span>
+### GET /api/portfolios/ID/offsets/ID <span class="latest">latest</span>
 
-### DELETE /api/portfolios/ID/offsets <span class="coming">coming soon</span>
+Get the full details of an offset, including its balances.
+
+```
+GET /api/portfolios/1/offsets/1
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 1,
+    "title": "My offset",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+
+    "balances": [{
+      "currency": "btc",
+      "balance": "10.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }, {
+      "currency": "ltc",
+      "balance": "1.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }]
+  }
+}
+```
+
+### POST /api/portfolios/ID/offsets <span class="latest">latest</span>
+
+Create a new offset with a collection of offset balances.
+
+```
+POST /api/portfolios/1/offsets
+
+{"title":"My second offset","balances":[
+  {"currency":"btc","balance":"10"},
+  {"currency":"ltc","balance":"1"}
+]}
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 2,
+    "title": "My second offset",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+
+    "balances": [{
+      "currency": "btc",
+      "balance": "10.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }, {
+      "currency": "ltc",
+      "balance": "1.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }]
+  }
+}
+```
+
+### PATCH /api/portfolios/ID/offsets/ID <span class="latest">latest</span>
+
+Update an existing offset with a new title. If `balances` is set, replaces the offset balances with a new collection of balances.
+
+```
+PATCH /api/portfolios/1/offsets/2
+
+{"title":"My second offset","balances":[
+  {"currency":"btc","balance":"5"},
+  {"currency":"usd","balance":"10"}
+]}
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 2,
+    "title": "My second offset",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+
+    "balances": [{
+      "currency": "btc",
+      "balance": "5.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }, {
+      "currency": "usd",
+      "balance": "10.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }]
+  }
+}
+```
+
+### DELETE /api/portfolios/ID/offsets <span class="latest">latest</span>
+
+Delete a portfolio offset and its associated balances.
+
+```
+DELETE /api/portfolios/1/offsets/2
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "id": 2,
+    "title": "My second offset",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
+
+    "balances": [{
+      "currency": "btc",
+      "balance": "5.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }, {
+      "currency": "usd",
+      "balance": "10.0",
+      "created_at": "2017-11-06T04:54:54+00:00",
+      "updated_at": "2017-11-23T23:01:44+00:00",
+      "source": "private-api"
+    }]
+  }
+}
+```
 
 # Example flow: Getting the history of an address
 
-1. `POST /api/portfolios/1/addresses` to create a new address 12
+1. `POST /api/portfolios/1/addresses` to create a new address with an `id` of `12`
 2. `GET /api/portfolios/1/addresses/12/balances` to get the latest address balance
-3. `GET /api/portfolios/1/addresses/12/txns` to get the latest address transactions
+3. `GET /api/portfolios/1/addresses/12/transactions` to get the latest address transactions

@@ -122,6 +122,15 @@ module Oauth2Support
       end
     end
 
+    shared_examples "a second successful PATCH request" do
+      let(:response2) { oauth2_token.patch(endpoint2, { body: arguments2 }) }
+      let(:json2) { JSON.parse(response2.body) }
+      let(:result2) do
+        expect_success(json2)
+        json2["result"]
+      end
+    end
+
     shared_examples "a failed POST request" do
       let(:error_code) { 400 } # Default
       let(:response) do

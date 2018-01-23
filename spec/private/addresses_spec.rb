@@ -11,9 +11,9 @@ describe "/portfolios/addresses" do
     it_behaves_like "with a portfolio" do
       context "creating a new address" do
         let(:endpoint) { "/api/portfolios/#{portfolio["id"]}/addresses" }
-        let(:portfolio_title) { "New address #{Time.now} #{SecureRandom.hex}" }
+        let(:address_title) { "New address #{Time.now} #{SecureRandom.hex}" }
         let(:arguments) { {
-          title:      portfolio_title,
+          title:      address_title,
           address:    "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu",
           currency:   "btc",
         } }
@@ -25,7 +25,7 @@ describe "/portfolios/addresses" do
           end
 
           it "returns the created address" do
-            expect(result["title"]).to eq portfolio_title
+            expect(result["title"]).to eq address_title
             expect(result["address"]).to eq "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu"
             expect(result["currency"]["code"]).to eq "btc"
             expect(result["currency"]["title"]).to eq "Bitcoin"
