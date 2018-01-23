@@ -47,6 +47,8 @@ GET /api/portfolios/1/addresses/1/balances
 Make sure that you implement an exponential backoff between successive requests
 (e.g. 2^n seconds between requests) to prevent getting automatically blocked.
 
+<span class="coming">coming soon</span> An additional `try_again_at` field will be provided with failed asynchronous requests.
+
 ## Types
 
 * All dates are in ISO8601 format, e.g. `"2001-02-03T04:05:06+00:00"`

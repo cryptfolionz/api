@@ -59,24 +59,23 @@ GET /api/portfolios
   "success": true,
   "time": 1512697998,
   "result": [{
-      "id": 1,
-      "title": "My portfolio",
-      "created_at": "2017-11-06T04:54:54+00:00",
-      "updated_at": "2017-11-23T23:01:44+00:00",
+    "id": 1,
+    "title": "My portfolio",
+    "created_at": "2017-11-06T04:54:54+00:00",
+    "updated_at": "2017-11-23T23:01:44+00:00",
 
-      "balances_last_updated": "2017-11-23T23:01:44+00:00",
-      "histories_last_updated": "2017-11-23T23:01:44+00:00",
-      "converted_balances_last_updated": "2017-11-23T23:01:44+00:00",
-      "converted_histories_last_updated": "2017-11-23T23:01:44+00:00",
+    "balances_last_updated": "2017-11-23T23:01:44+00:00",
+    "histories_last_updated": "2017-11-23T23:01:44+00:00",
+    "converted_balances_last_updated": "2017-11-23T23:01:44+00:00",
+    "converted_histories_last_updated": "2017-11-23T23:01:44+00:00",
 
-      "currencies": 3,
-      "accounts": 4,
-      "addresses": 5,
-      "offsets": 0
-    }, {
-      ...
-    }]
-  }
+    "currencies": 3,
+    "accounts": 4,
+    "addresses": 5,
+    "offsets": 0
+  }, {
+    ...
+  }]
 }
 ```
 

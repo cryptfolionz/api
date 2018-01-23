@@ -9,25 +9,21 @@ module PortfolioSupport
       currencies: ["btc", "usd"],
     } }
     let(:create_portfolio_response) do
-      begin
-        # Try do it normally...
-        putc "p" # Make it clear when we're waiting for a portfolio to be created
-        oauth2_token.post(create_portfolio_endpoint, { body: create_portfolio_arguments })
+      putc "p" # Make it clear when we're waiting for a portfolio to be created
 
-      rescue OAuth2::Error => e
-        # Did it fail because the user is full of portfolios?
-        json = JSON.parse(e.response.body)
-        if json["message"] == "Invalid" && json["invalid"].first == "User has more portfolios than permitted by the current plan"
-          # Yes; we should try deleting them all before continuing
-          puts "--> Deleting all existing portfolios before continuing..."
-          delete_all_portfolios!
+      # First, see how many portfolios we have
+      response = oauth2_token.get("/api/portfolios")
+      json = JSON.parse(response.body)
+      expect_success(json)
 
-          # And then try again
-          oauth2_token.post(create_portfolio_endpoint, { body: create_portfolio_arguments })
-        else
-          raise e
-        end
+      if json["result"].count >= 5
+        # We have too many! We should try deleting them all before continuing
+        puts "--> Deleting #{json["result"].count} existing portfolios before continuing..."
+        delete_all_portfolios!(json["result"])
       end
+
+      # And now we can create the portfolio properly
+      oauth2_token.post(create_portfolio_endpoint, { body: create_portfolio_arguments })
     end
     let(:create_portfolio_json) { JSON.parse(create_portfolio_response.body) }
     let(:create_portfolio_result) do
@@ -36,11 +32,8 @@ module PortfolioSupport
     end
     let!(:portfolio) { create_portfolio_result }
 
-    def delete_all_portfolios!
-      response = oauth2_token.get("/api/portfolios")
-      json = JSON.parse(response.body)
-      expect_success(json)
-      json["result"].each do |portfolio|
+    def delete_all_portfolios!(all_portfolios)
+      all_portfolios.each do |portfolio|
         response = oauth2_token.delete("/api/portfolios/#{portfolio["id"]}")
         json = JSON.parse(response.body)
         expect_success(json)
