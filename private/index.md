@@ -2,6 +2,8 @@
 
 # Private endpoints
 
+<section class="warning">**NOTE** This API specification is still under heavy development. Follow <a href="https://support.cryptfolio.com/s1-general/updates">CryptFolio Updates</a> to stay in the loop.</section>
+
 With all of these endpoints you will need to get permission from the user to access this data. CryptFolio uses the common OAuth2 standard to implement authorisation and authentication.
 
 1. Make sure that you have [signed up for a CryptFolio account](https://preview.cryptfolio.com/signup).
@@ -225,7 +227,7 @@ DELETE /api/portfolios/1
 
 ### GET /api/portfolios/ID/balances <span class="latest">latest</span> <span class="async">async</span>
 
-Get all current balances for a portfolio (the current balances of all account and addresses, summed together).
+Get all current balances for a portfolio (the current balances of all accounts, addresses and offsets, summed together).
 
 ```
 GET /api/portfolios/1/balances

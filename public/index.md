@@ -2,6 +2,8 @@
 
 # Public endpoints
 
+<section class="warning">**NOTE** This API specification is still under heavy development. Follow <a href="https://support.cryptfolio.com/s1-general/updates">CryptFolio Updates</a> to stay in the loop.</section>
+
 All of these endpoints can be requested directly or through OAuth2. (In the future, authentication through OAuth2 will give you higher request limits.)
 
 # Currencies

@@ -31,3 +31,23 @@ span.async {
   color: #933;
   background: #ebb;
 }
+
+section.information, section.warning {
+  border: 1px solid;
+  max-width: 420px;
+  margin: 1em auto;
+  padding: 1em;
+  border-radius: 0.3em;
+}
+
+section.information {
+  border-color: #16a;
+  color: #16a;
+  background: #bdf;
+}
+
+section.warning {
+  border-color: #f90;
+  color: #950;
+  background: #fd9;
+}
