@@ -39,7 +39,7 @@ module PortfolioSupport
         json = JSON.parse(response.body)
         expect_success(json)
       end
-      puts "--> Deleted #{json["result"].count} existing portfolios"
+      puts "--> Deleted #{all_portfolios.count} existing portfolios"
     end
 
     shared_examples "with a bitcoin address" do
