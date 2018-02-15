@@ -47,14 +47,24 @@ describe "/portfolios" do
       end
 
       context "not enough currencies are provided" do
-        let(:portfolio_currencies) { ["btc"] }
+        let(:portfolio_currencies) { [] }
 
         it_behaves_like "a failed POST request" do
+          let(:error_code) { 422 }
           let(:message) { "Invalid" }
 
           it "includes the validation failure message" do
-            expect(json["invalid"]).to include "Portfolio currencies must have at least two currencies selected"
+            expect(json["invalid"]).to include "must have at least one reporting currency selected"
           end
+        end
+      end
+
+      context "an invalid currency code" do
+        let(:portfolio_currencies) { ["totally invalid currency code"] }
+
+        it_behaves_like "a failed POST request" do
+          let(:error_code) { 404 }
+          let(:message) { "Invalid" }
         end
       end
     end
