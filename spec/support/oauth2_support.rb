@@ -63,7 +63,7 @@ module Oauth2Support
         count = 0
         while wait_for_response && json["success"] == false && json["message"] == "Not ready" && e.response.status == 503
           count += 1
-          if count > 6
+          if count > 7
             raise "Gave up waiting for #{endpoint} to be ready"
           end
 
