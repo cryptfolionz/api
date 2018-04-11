@@ -16,7 +16,7 @@ Authentication and authorisation is easy with [the oauth2 gem](https://github.co
 def oauth2_client
   OAuth2::Client.new('<your key>',
     '<your secret>',
-    site:          "https://preview.cryptfolio.com",
+    site:          "https://cryptfolio.com",
     token_url:     "/oauth/token",
     authorize_url: "/oauth/authorize")
 end

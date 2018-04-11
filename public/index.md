@@ -10,7 +10,7 @@ All of these endpoints can be requested directly or through OAuth2. (In the futu
 
 ### GET /api/currencies <span class="latest">latest</span>
 
-Lists all known currencies. (_[example](https://preview.cryptfolio.com/api/currencies)_)
+Lists all known currencies. (_[example](https://cryptfolio.com/api/currencies)_)
 
 ```
 GET /api/currencies
@@ -42,7 +42,7 @@ GET /api/currencies
 
 ### GET /api/currencies/CODE <span class="latest">latest</span>
 
-Get the information about a currency. (_[example](https://preview.cryptfolio.com/api/currencies/btc)_)
+Get the information about a currency. (_[example](https://cryptfolio.com/api/currencies/btc)_)
 
 ```
 GET /api/currencies/btc
@@ -73,15 +73,15 @@ List all exchanges that trade that currency.
 
 ### GET /api/currencies/cryptocurrencies <span class="latest">latest</span>
 
-Lists all known cryptocurrencies. (_[example](https://preview.cryptfolio.com/api/currencies/cryptocurrencies)_)
+Lists all known cryptocurrencies. (_[example](https://cryptfolio.com/api/currencies/cryptocurrencies)_)
 
 ### GET /api/currencies/fiat <span class="latest">latest</span>
 
-Lists all known fiat currencies. (_[example](https://preview.cryptfolio.com/api/currencies/fiat)_)
+Lists all known fiat currencies. (_[example](https://cryptfolio.com/api/currencies/fiat)_)
 
 ### GET /api/currencies/tokens <span class="latest">latest</span>
 
-Lists all known Ethereum tokens. (_[example](https://preview.cryptfolio.com/api/currencies/tokens)_)
+Lists all known Ethereum tokens. (_[example](https://cryptfolio.com/api/currencies/tokens)_)
 
 # Exchanges
 

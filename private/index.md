@@ -6,8 +6,8 @@
 
 With all of these endpoints you will need to get permission from the user to access this data. CryptFolio uses the common OAuth2 standard to implement authorisation and authentication.
 
-1. Make sure that you have [signed up for a CryptFolio account](https://preview.cryptfolio.com/signup).
-2. In [your profile](https://preview.cryptfolio.com/profile), visit [your registered applications](https://preview.cryptfolio.com/oauth/applications)
+1. Make sure that you have [signed up for a CryptFolio account](https://cryptfolio.com/signup).
+2. In [your profile](https://cryptfolio.com/profile), visit [your registered applications](https://cryptfolio.com/oauth/applications)
 3. Create a new application, and list all of your valid redirection URIs.
 4. You will be given an application key and secret. Use these to initialise your OAuth2 client.
 
