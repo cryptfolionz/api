@@ -114,3 +114,26 @@ List all known data sources.
 ### GET /api/source/KEY <span class="coming">coming soon</span>
 
 List information about a given data source key.
+
+# Site information
+
+### GET /api/status <span class="latest">latest</span>
+
+Lists site status, as published at [status.cryptfolio.com](https://status.cryptfolio.com). (_[example](https://cryptfolio.com/api/status)_)
+
+```
+GET /api/status
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": {
+    "ok": [
+      "tickers",
+      "jobs"
+    ]
+  }
+}
+```
