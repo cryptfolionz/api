@@ -1,0 +1,9 @@
+[
+  {
+    "currency": "btc",
+    "balance": "1.234567"
+  }, {
+    "currency": "ltc",
+    "balance": "2.345678"
+  }
+]
