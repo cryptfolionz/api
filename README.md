@@ -54,9 +54,3 @@ Make sure that you implement an exponential backoff between successive requests
 * All dates are in ISO8601 format, e.g. `"2001-02-03T04:05:06+00:00"`
 * All currency values are returned as strings, rather than floats, e.g. `"50.00501"`
 * Most API responses include the `source` that was used to obtain the data, if not calculated or processed directly by CryptFolio.
-
-# TODO
-
-1. In theory we could include some sample applications here too
-1. User accounts/APIs will have different rate limits depending on plan
-1. Could we generate the .md from the specs?

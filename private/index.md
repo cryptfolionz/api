@@ -360,8 +360,6 @@ GET /api/portfolios/1/addresses/1/balances
     "currency": { "title": "Bitcoin", "code": "btc" },
     "balance": "50.00501",
     "transactions": 3,           # may be null
-    "sent": "0.0",               # may be null
-    "received": "50.00501",      # may be null
 
     "created_at": "2017-11-06T04:54:54+00:00",
     "updated_at": "2017-11-23T23:01:44+00:00",

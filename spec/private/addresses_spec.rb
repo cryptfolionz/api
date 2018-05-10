@@ -44,8 +44,6 @@ describe "/portfolios/addresses" do
 
                 expect_hash_match(result2.first, {
                   "balance":     "50.00501",
-                  "sent":        "0.0",
-                  "received":    "50.00501",
                   "transactions": 3,
                 })
 

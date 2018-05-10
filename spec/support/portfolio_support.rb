@@ -17,7 +17,7 @@ module PortfolioSupport
       expect_success(json)
 
       putc "#{json["result"].count}"
-      if json["result"].count >= 5
+      if json["result"].count >= 3
         # We have too many! We should try deleting them all before continuing
         puts "--> Deleting #{json["result"].count} existing portfolios before continuing..."
         delete_all_portfolios!(json["result"])
