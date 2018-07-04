@@ -14,7 +14,7 @@ describe "/portfolios/addresses" do
         let(:address_title) { "New address #{Time.now} #{SecureRandom.hex}" }
         let(:arguments) { {
           title:      address_title,
-          address:    "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu",
+          address:    "12UFNYqDRmkpHm9YJEuf96jAjyMXeP36Gp",
           currency:   "btc",
         } }
 
@@ -26,7 +26,7 @@ describe "/portfolios/addresses" do
 
           it "returns the created address" do
             expect(result["title"]).to eq address_title
-            expect(result["address"]).to eq "1JfbZRwdDHKZmuiZgYArJZhcuuzuw2HuMu"
+            expect(result["address"]).to eq arguments[:address]
             expect(result["currency"]["code"]).to eq "btc"
             expect(result["currency"]["title"]).to eq "Bitcoin"
             expect(result["valid"]).to eq true
@@ -43,9 +43,9 @@ describe "/portfolios/addresses" do
                 expect(result2.first["currency"]["code"]).to eq "btc"
 
                 expect_hash_match(result2.first, {
-                  "balance":     "50.00501",
-                  "transactions": 3,
+                  "balance":     "0.0",
                 })
+                expect(result2.first["transactions"]).to be >= 20
 
                 expect(result2.first["created_at"]).to_not be_nil
                 expect(result2.first["updated_at"]).to_not be_nil
@@ -60,34 +60,40 @@ describe "/portfolios/addresses" do
             it_behaves_like "a second successful request" do
               let(:wait_for_response) { true }
 
+              # Different explorers can have wildly different times on transactions,
+              # the important thing is that the txn references and amounts are identical
+              def expect_time_around(actual, expected)
+                expect(Time.parse(actual)).to be >= expected - 12.hours
+                expect(Time.parse(actual)).to be <= expected + 12.hours
+              end
+
               it "returns valid transactions" do
-                expect(result2.length).to eq 3
+                expect(result2.length).to be >= 20
 
                 expect_hash_match(result2.first, {
-                  "delta":     "0.005",
-                  "fee":       "0.0",
-                  "txn_at":    Time.parse('2016-05-02 22:24:11 +0000').iso8601,
-                  "reference": '06d7d63d6c1966a378bbbd234a27a5b583f37d3bdf9fb9ef50f4724c86b4559b',
+                  "delta":     "-2.0",
+                  "fee":       "0.00168574",
+                  "reference": '3f5fae67a3e1172546e6e722e9e5e1500ede7720473eba17684615edc7fa2bae',
                 })
+                expect_time_around(result2.first['txn_at'], Time.parse('2017-12-21 00:31:44 +0000'))
                 expect(result2.first["currency"]["code"]).to eq "btc"
                 expect(result2.first["source"]).to_not be_nil
 
                 expect_hash_match(result2.second, {
-                  "delta":     "0.00001",
+                  "delta":     "2.0",
                   "fee":       "0.0",
-                  # Not all providers give accurate sub-minute times
-                  # "txn_at":    Time.parse('2015-07-22 10:12:51 +0000').iso8601,
-                  "reference": 'b565336983c6139e2fd4d5bdd127d7a8b94e9d2dba084a97c002871766a079f3',
+                  "reference": 'f642ba5aa54a511e51e5fbf61f0ba03f3138ee5aaa5da2e63d4b851bff31a169',
                 })
+                expect_time_around(result2.second['txn_at'], Time.parse('2017-12-20 22:34:01 +0000'))
                 expect(result2.second["currency"]["code"]).to eq "btc"
                 expect(result2.second["source"]).to_not be_nil
 
                 expect_hash_match(result2.third, {
-                  "delta":     "50.0",
-                  "fee":       "0.0",
-                  "txn_at":    Time.parse('2009-01-09 03:23:48 +0000').iso8601,
-                  "reference": '63522845d294ee9b0188ae5cac91bf389a0c3723f084ca1025e7d9cdfe481ce1',
+                  "delta":     "-1.78196236",
+                  "fee":       "0.00080934",
+                  "reference": 'f4a0baa60ba33c4904075a559943aeb4c5b5d3c6a57912eda41b4fd6946739c1',
                 })
+                expect_time_around(result2.third['txn_at'], Time.parse('2017-12-14 15:11:08 +0000'))
                 expect(result2.third["currency"]["code"]).to eq "btc"
                 expect(result2.third["source"]).to_not be_nil
               end
