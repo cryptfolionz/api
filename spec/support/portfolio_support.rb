@@ -1,3 +1,5 @@
+require_relative 'oauth2_support'
+
 # Automates the process of creating a portfolio to test with
 module PortfolioSupport
   include Oauth2Support
