@@ -36,11 +36,11 @@ describe "/currencies" do
 
   let(:augur_parameters) {{
     "code":              "rep",
-    "title":             "Reputation",
+    "title":             "Augur",
     "is_cryptocurrency": false,
     "is_fiat":           false,
     "is_ethereum_token": true,
-    "ethereum_contract_address": "0xe94327d07fc17907b4db788e5adf2ed424addff6",
+    "ethereum_contract_address": "0x1985365e9f78359a9b6ad760e32412f4a445e862",
   }}
 
   it_behaves_like "a web client" do
