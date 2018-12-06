@@ -36,7 +36,7 @@ describe "/currencies" do
 
   let(:augur_parameters) {{
     "code":              "rep",
-    "title":             "Reputation",
+    "title":             "Augur",
     "is_cryptocurrency": false,
     "is_fiat":           false,
     "is_ethereum_token": true,
