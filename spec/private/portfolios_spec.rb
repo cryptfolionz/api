@@ -4,6 +4,7 @@ describe "/portfolios" do
   include FetchSupport
   include Oauth2Support
   include PortfolioSupport
+  include ApiKeySupport
 
   it_behaves_like "an OAuth2 client" do
     let(:scopes) { "read write delete" }
@@ -29,7 +30,7 @@ describe "/portfolios" do
           expect(@created_id).to_not be_nil
         end
 
-        it "returning the created portfolio" do
+        it "returns the created portfolio" do
           expect(result["title"]).to eq portfolio_title
           expect(result["currencies"].map { |c| c["code"] }.sort).to eq portfolio_currencies.sort
         end
@@ -38,7 +39,7 @@ describe "/portfolios" do
           let(:endpoint2) { "/api/portfolios/#{@created_id}" }
 
           it_behaves_like "a second successful request" do
-            it "returning the new portfolio" do
+            it "returns the new portfolio" do
               expect(result["title"]).to eq portfolio_title
               expect(result["currencies"].map { |c| c["code"] }.sort).to eq portfolio_currencies.sort
             end
@@ -49,7 +50,7 @@ describe "/portfolios" do
       context "not enough currencies are provided" do
         let(:portfolio_currencies) { [] }
 
-        it_behaves_like "a failed POST request" do
+        it_behaves_like "a failed OAuth2 POST request" do
           let(:error_code) { 422 }
           let(:message) { "Invalid" }
 
@@ -62,7 +63,7 @@ describe "/portfolios" do
       context "an invalid currency code" do
         let(:portfolio_currencies) { ["totally invalid currency code"] }
 
-        it_behaves_like "a failed POST request" do
+        it_behaves_like "a failed OAuth2 POST request" do
           let(:error_code) { 404 }
           let(:message) { "Invalid" }
         end
@@ -175,6 +176,16 @@ describe "/portfolios" do
         } }
 
         it_behaves_like "a forbidden POST request"
+      end
+    end
+  end
+
+  it_behaves_like "using an API key" do
+    let(:endpoint) { "/api/portfolios" }
+
+    it_behaves_like "a successful request" do
+      it "lists available portfolios" do
+        expect(result.count).to be >= 0
       end
     end
   end

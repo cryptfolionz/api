@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "/user" do
   include FetchSupport
   include Oauth2Support
+  include ApiKeySupport
 
   let(:endpoint) { "/api/user" }
 
@@ -55,6 +56,23 @@ describe "/user" do
       let(:scopes) { "read" }
 
       it_behaves_like "a failed OAuth2 request" do
+        let(:error_code) { "invalid_client" }
+      end
+    end
+  end
+
+  it_behaves_like "using an API key" do
+    it_behaves_like "a successful request" do
+      it "lists user information" do
+        expect(result["name"]).to eq ENV['TEST_USER_NAME']
+        expect(result["email"]).to eq ENV['TEST_USER_EMAIL']
+      end
+    end
+
+    context "an invalid API key" do
+      let(:api_key) { "invalid" }
+
+      it_behaves_like "a failed GET request" do
         let(:error_code) { "invalid_client" }
       end
     end

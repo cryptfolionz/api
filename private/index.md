@@ -4,6 +4,10 @@
 
 <section class="warning">**NOTE** This API specification is still under heavy development. Follow <a href="https://support.cryptfolio.com/s1-general/updates">CryptFolio Updates</a> to stay in the loop.</section>
 
+There are two ways to access your private data: through OAuth2, or through API key.
+
+### Using OAuth2
+
 With all of these endpoints you will need to get permission from the user to access this data. CryptFolio uses the common OAuth2 standard to implement authorisation and authentication.
 
 1. Make sure that you have [signed up for a CryptFolio account](https://cryptfolio.com/signup).
@@ -13,14 +17,24 @@ With all of these endpoints you will need to get permission from the user to acc
 
 See [some example OAuth2 authentication code](../examples/).
 
+### Using API keys
+
+For read-only endpoints, you can also [create API keys](https://cryptfolio.com/get_api_keys) for your own account,
+and use the API key as a parameter, rather than going through OAuth2 setup.
+
+You can provide the API key with the GET parameter `api_key=...`, or by setting the request header
+`X-API-KEY: ...` (recommended).
+
+API keys can only be set up with `read` and/or `info` scopes.
+
 ### Scopes
 
 Endpoints require the following scopes:
 
 * **GET** (read data) requires one of the `admin` or `read` scopes.
-* **POST** (create new) requires one of the `admin` or `read` scopes, AND one of the `admin` or `write` scopes.
-* **PATCH** (update existing) requires one of the `admin` or `read` scopes, AND one of the `admin` or `write` scopes.
-* **DELETE** (delete existing) requires one of the `admin` or `read` scopes, AND one of the `admin` or `delete` scopes.
+* **POST** (create new) requires one of the `admin` or `read` scopes, AND one of the `admin` or `write` scopes. Must use OAuth2.
+* **PATCH** (update existing) requires one of the `admin` or `read` scopes, AND one of the `admin` or `write` scopes. Must use OAuth2.
+* **DELETE** (delete existing) requires one of the `admin` or `read` scopes, AND one of the `admin` or `delete` scopes. Must use OAuth2.
 
 If the user has not provided your application with sufficient scope your request will fail with `403 Forbidden`.
 

@@ -22,7 +22,6 @@ module FetchSupport
     end
   end
 
-
   def rate_limited(uri)
     host = URI.parse(uri).host
     args = {threshold: 1, interval: 1}

@@ -1,20 +1,8 @@
 require 'oauth2'
+require_relative 'api_support'
 
 module Oauth2Support
-  def expect_success(json)
-    expect(json["success"]).to eq true
-    expect(json["time"]).to be >= (Time.now - 1.hour).to_i
-    expect(json["time"]).to be <= (Time.now + 1.hour).to_i
-    expect(json["result"]).to_not be_nil
-  end
-
-  def expect_failure(json)
-    expect(json["success"]).to eq false
-    expect(json["time"]).to be >= (Time.now - 1.hour).to_i
-    expect(json["time"]).to be <= (Time.now + 1.hour).to_i
-    expect(json["message"]).to eq message
-    expect(json["result"]).to be_nil
-  end
+  include ApiSupport
 
   shared_examples "an OAuth2 client" do
     let(:oauth2_key) { ENV['OAUTH2_KEY'] || fail("Need OAUTH2_KEY env variable set") }
@@ -55,83 +43,9 @@ module Oauth2Support
       oauth2_client.password.get_token(user_email, user_password, scope: scopes)
     end
 
-    def asynchronous_get_request(token, endpoint)
-      begin
-        response = token.get(endpoint)
-      rescue OAuth2::Error => e
-        json = JSON.parse(e.response.body)
-        count = 0
-        while wait_for_response && json["success"] == false && json["message"] == "Not ready" && e.response.status == 503
-          count += 1
-          if count > 7
-            raise "Gave up waiting for #{endpoint} to be ready"
-          end
+    let(:remote_client) { oauth2_token }
 
-          putc "z"
-          sleep(2 ** count) # exponential backoff
-          begin
-            response = token.get(endpoint)
-            json = JSON.parse(response.body)
-          rescue OAuth2::Error => e2
-            # Try again...
-            e = e2
-            json = JSON.parse(e2.response.body)
-          end
-        end
-
-        expect_success(json)
-      end
-      response
-    end
-
-    shared_examples "a successful request" do
-      let(:wait_for_response) { false }
-      let(:response) { asynchronous_get_request(oauth2_token, endpoint) }
-      let(:json) { JSON.parse(response.body) }
-      let(:result) do
-        expect_success(json)
-        json["result"]
-      end
-    end
-
-    shared_examples "a second successful request" do
-      let(:wait_for_response) { false }
-      let(:response2) { asynchronous_get_request(oauth2_token, endpoint2) }
-      let(:json2) { JSON.parse(response2.body) }
-      let(:result2) do
-        expect_success(json2)
-        json2["result"]
-      end
-    end
-
-    shared_examples "a successful POST request" do
-      let(:response) { oauth2_token.post(endpoint, { body: arguments }) }
-      let(:json) { JSON.parse(response.body) }
-      let(:result) do
-        expect_success(json)
-        json["result"]
-      end
-    end
-
-    shared_examples "a successful PATCH request" do
-      let(:response) { oauth2_token.patch(endpoint, { body: arguments }) }
-      let(:json) { JSON.parse(response.body) }
-      let(:result) do
-        expect_success(json)
-        json["result"]
-      end
-    end
-
-    shared_examples "a second successful PATCH request" do
-      let(:response2) { oauth2_token.patch(endpoint2, { body: arguments2 }) }
-      let(:json2) { JSON.parse(response2.body) }
-      let(:result2) do
-        expect_success(json2)
-        json2["result"]
-      end
-    end
-
-    shared_examples "a failed POST request" do
+    shared_examples "a failed OAuth2 POST request" do
       let(:error_code) { 400 } # Default
       let(:response) do
         response = nil
