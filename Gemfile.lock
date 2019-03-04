@@ -57,7 +57,7 @@ GEM
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)
-    rack (2.0.3)
+    rack (2.0.6)
     ratelimit (1.0.3)
       redis (>= 2.0.0)
       redis-namespace (>= 1.0.0)
