@@ -2,6 +2,10 @@ require 'oauth2'
 
 module ApiSupport
   def expect_success(json)
+    unless json["success"]
+      raise "Expected success, got #{json["success"]}: '#{json["message"]}'"
+    end
+
     expect(json["success"]).to eq true
     expect(json["time"]).to be >= (Time.now - 1.hour).to_i
     expect(json["time"]).to be <= (Time.now + 1.hour).to_i
@@ -22,6 +26,7 @@ module ApiSupport
     rescue OAuth2::Error => e
       json = JSON.parse(e.response.body)
       count = 0
+
       while wait_for_response && json["success"] == false && json["message"] == "Not ready" && e.response.status == 503
         count += 1
         if count > 7
