@@ -306,6 +306,34 @@ GET /api/portfolios/1/converted
 
 Get the historical converted balances for a portfolio.
 
+### GET /api/portfolios/ID/inventory <span class="latest">latest</span> <span class="async">async</span>
+
+List all of the inventory balances for a portfolio, in each of the users' portfolio currencies.
+A transaction is included in the inventory if the _transaction type_ is of type _purchase_ or _sale_
+([learn more](https://support.cryptfolio.com/i174-how-balances-are-calculated)).
+
+```
+GET /api/portfolios/1/inventory
+```
+
+```ruby
+{
+  "success": true,
+  "time": 1512697998,
+  "result": [{
+    "currency": "btc",
+    "balance": "0.5",    # May be different to /balances for txns that are not categorised
+    "balance_at": "2017-11-06T04:54:54+00:00",
+    "source": "cryptfolio"
+  }, {
+    "currency": "usd",
+    "balance": "0.0",
+    "balance_at": "2017-11-06T04:54:54+00:00",
+    "source": "cryptfolio"
+  }]
+}
+```
+
 # Addresses
 
 ### GET /api/portfolios/ID/addresses <span class="latest">latest</span>

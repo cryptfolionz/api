@@ -142,6 +142,28 @@ describe "/portfolios" do
                 end
               end
             end
+
+            context "then requesting all inventories" do
+              let(:endpoint) { "/api/portfolios/#{portfolio["id"]}/inventory" }
+
+              it_behaves_like "a successful request" do
+                let(:wait_for_response) { true }
+
+                it "returning a list of total inventory balances" do
+                  expect(result.length).to eq 2
+
+                  expect(result.first["currency"]["code"]).to eq "btc"
+                  expect(result.first["balance"].to_d).to be >= '0.00501'.to_d
+                  expect(result.first["balance_at"]).to_not eq nil
+                  expect(result.first["source"]).to_not eq nil
+
+                  expect(result.second["currency"]["code"]).to eq "usd"
+                  expect(result.second["balance"].to_d).to eq '0'.to_d
+                  expect(result.second["balance_at"]).to_not eq nil
+                  expect(result.second["source"]).to_not eq nil
+                end
+              end
+            end
           end
         end
       end
