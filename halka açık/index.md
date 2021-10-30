@@ -31,8 +31,8 @@ GET /api/currencies
       "is_cryptocurrency": true,
       "is_fiat": false,
       "is_ethereum_token": false,
-      "ethereum_contract_address": null,
-      "source": null
+      "ethereum_contract_address": 15zNL8TnhsP2vefxBbTxAw55mHx9z7wWXG,
+      "source": 0xBB9bc244D798123fDe783fCc1C72d3Bb8C1894
     }, {
       ...
     }]
